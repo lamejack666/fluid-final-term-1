@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="th" data-theme="dark">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
@@ -114,8 +115,8 @@
   h1.top { font-family: var(--serif); font-weight: 600; font-size: 2.6rem; line-height: 1.3; margin: 0 0 0.9rem; text-wrap: balance; }
   .parthead { margin: 0 0 2rem; }
   h2.part-title { font-family: var(--serif); font-weight: 600; font-size: 2rem; line-height: 1.35; margin: 0 0 0.7rem; color: var(--text); text-wrap: balance; }
-  article { margin-top: 6rem; padding-top: 3rem; border-top: 1px solid var(--line); }
-  article:first-of-type { margin-top: 3rem; }
+  article { margin: 0; padding: 0; }
+  
   nav.toc { display: grid; gap: 0.2rem; margin-top: 2rem; }
   nav.toc a { color: var(--text); text-decoration: none; padding: 0.75rem 0; border-top: 1px solid var(--line); display: flex; gap: 1rem; align-items: baseline; }
   nav.toc a:last-child { border-bottom: 1px solid var(--line); }
@@ -124,6 +125,36 @@
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   @media (max-width: 640px) { h1.top { font-size: 1.9rem; } h2.part-title { font-size: 1.55rem; } }
+
+  html.js article.panel[hidden] { display: none; }
+  h1.top { font-size: 2rem; margin-bottom: 0.5rem; }
+  header { margin-bottom: 1.2rem; }
+  nav.tabs {
+    position: sticky; top: 0; z-index: 10; background: var(--bg);
+    display: flex; gap: 0.4rem; overflow-x: auto; padding: 0.7rem 0;
+    border-bottom: 1px solid var(--line); margin-bottom: 2rem;
+  }
+  nav.tabs a {
+    flex: 0 0 auto; text-decoration: none; color: var(--muted); font-weight: 500; font-size: 0.98rem;
+    padding: 0.55rem 1.05rem; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap;
+  }
+  nav.tabs a:hover { color: var(--text); border-color: var(--muted); }
+  nav.tabs a.on { background: var(--amber); color: oklch(0.2 0.03 78); border-color: var(--amber); font-weight: 600; }
+  nav.tabs a:focus-visible, .pager a:focus-visible, .chips button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0 0 1rem; }
+  .chips button {
+    font: 500 0.88rem/1 var(--sans); color: var(--muted); background: transparent; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.5rem 0.85rem;
+  }
+  .chips button:hover { color: var(--amber); border-color: var(--amber); }
+  .chips-label { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.5rem; }
+  section { scroll-margin-top: 4.5rem; margin-top: 2.6rem; }
+  .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .pager a { color: var(--text); text-decoration: none; border: 1px solid var(--line); border-radius: 14px; padding: 0.8rem 1.1rem; max-width: 48%; }
+  .pager a:hover { border-color: var(--amber); }
+  .pager a small { display: block; color: var(--muted); font-size: 0.8rem; }
+  .pager a.next { margin-left: auto; text-align: right; }
+  @media (max-width: 520px) { .pager { flex-direction: column; } .pager a { max-width: none; } }
 </style>
 </head>
 <body>
@@ -131,17 +162,10 @@
 <main>
 <header>
   <h1 class="top">Fluid Final Term 1: Dimensional Analysis</h1>
-  <p class="lede">สรุปเฉลยบทที่ 4 การวิเคราะห์เชิงมิติ แบบจำลอง และความคล้ายคลึงกัน (ตัวอย่างข้อ 7 และ 8) ทำตามลำดับขั้นของอาจารย์ คำอธิบายเป็นภาษาไทย</p>
-  
-<nav class="toc" aria-label="สารบัญ">
-  <a href="#basics"><span>1</span>พื้นฐาน: km/hr เป็น M L T</a>
-  <a href="#qa"><span>2</span>ถาม-ตอบ: ระบบ M L T และการตั้งฟังก์ชัน</a>
-  <a href="#p7"><span>3</span>เฉลยข้อ 7: เครื่องสูบน้ำ</a>
-  <a href="#p8"><span>4</span>เฉลยข้อ 8: ลมพัดผ่านโครงสร้างสะพาน</a>
-</nav>
-
+  <p class="lede">เฉลยบทที่ 4 (ตัวอย่างข้อ 7 และ 8) เป็นภาษาไทย ทำตามลำดับขั้นของอาจารย์ เลือกเรื่องที่ต้องการจากแท็บด้านล่าง</p>
 </header>
-<article id="basics">
+<nav class="tabs" aria-label="เลือกเรื่อง"><a href="#basics">พื้นฐาน</a><a href="#qa">ถาม-ตอบ</a><a href="#p7">ข้อ 7</a><a href="#p8">ข้อ 8</a></nav>
+<article class="panel" id="basics">
 
 <div class="parthead"><h2 class="part-title">พื้นฐาน: เปลี่ยน km/hr เป็นมิติ M L T</h2><p class="lede">ข้อ 8 ให้ความเร็วลมเป็น $50\ \text{km/hr}$ แต่ใน Dimensional Analysis เราไม่ได้ใช้ตัวเลขและหน่วยนี้โดยตรง เราใช้ "มิติ" ของมัน ซึ่งก็คือ $LT^{-1}$ หน้านี้อธิบายว่ามาจากไหน</p></div>
 
@@ -240,8 +264,8 @@
   </ul>
 </section>
 
-</article>
-<article id="qa">
+<div class="chips-slot"></div><div class="pager"><a class="next" href="#qa"><small>ถัดไป →</small>ถาม-ตอบ: ระบบ M L T และการตั้งฟังก์ชัน</a></div></article>
+<article class="panel" id="qa">
 <div class="parthead"><h2 class="part-title">ถาม-ตอบ: ทำความเข้าใจก่อนทำข้อสอบ</h2>
 <p class="lede">คำถามที่น่าจะสงสัยตอนทำข้อ 7 และ 8</p></div>
 
@@ -275,8 +299,8 @@
     <li><span class="lead">ข้อ 8 ถามสามตัว</span> ($H_m$, $V_m$, $f_p$) แต่ผลที่เราสนใจคือ $f$ ส่วน $H$ และ $V$ อยู่ในวงเล็บ แล้วหาค่าจากการจับ $\Pi_2$ และ $\Pi_3$ ให้เท่ากัน</li>
   </ul>
 </section>
-</article>
-<article id="p7">
+<div class="chips-slot"></div><div class="pager"><a class="prev" href="#basics"><small>← ก่อนหน้า</small>พื้นฐาน: km/hr เป็น M L T</a><a class="next" href="#p7"><small>ถัดไป →</small>ข้อ 7: เครื่องสูบน้ำ</a></div></article>
+<article class="panel" id="p7">
 
 <div class="parthead"><h2 class="part-title">ข้อ 7: แบบจำลองเครื่องสูบน้ำ</h2><p class="lede">ตัวอย่างบทที่ 4 ข้อ 7 ทำตามลำดับขั้นของอาจารย์ นับ $k$ และ $r$ หามิติ เลือกตัวแปรซ้ำ แก้ $\Pi$ ทีละตัว แล้วจับคู่แบบจำลองกับ Prototype</p></div>
 
@@ -434,8 +458,8 @@
   </ul>
 </section>
 
-</article>
-<article id="p8">
+<div class="chips-slot"></div><div class="pager"><a class="prev" href="#qa"><small>← ก่อนหน้า</small>ถาม-ตอบ: ระบบ M L T และการตั้งฟังก์ชัน</a><a class="next" href="#p8"><small>ถัดไป →</small>ข้อ 8: ลมพัดผ่านสะพาน</a></div></article>
+<article class="panel" id="p8">
 
 <div class="parthead"><h2 class="part-title">ข้อ 8: ลมพัดผ่านโครงสร้างสะพาน</h2><p class="lede">ตัวอย่างบทที่ 4 ข้อ 8 ทำตามลำดับขั้นของอาจารย์เหมือนข้อ 7 นับตัวแปร หามิติ เลือกตัวแปรซ้ำ แก้ $\Pi$ ทีละตัว แล้วจับคู่แบบจำลองกับ Prototype</p></div>
 
@@ -625,8 +649,53 @@
   </ul>
 </section>
 
-</article>
-<footer class="note" style="margin-top:5rem">เนื้อหาเรียบเรียงเอง ตรวจตัวเลขด้วยการคำนวณแยกต่างหากแล้ว หากพบจุดผิด ช่วยแจ้งด้วย</footer>
+<div class="chips-slot"></div><div class="pager"><a class="prev" href="#p7"><small>← ก่อนหน้า</small>ข้อ 7: เครื่องสูบน้ำ</a></div></article>
+
+<footer class="note" style="margin-top:4rem">เรียบเรียงเอง ตรวจตัวเลขด้วยการคำนวณแยกต่างหากแล้ว หากพบจุดผิด ช่วยแจ้งด้วย</footer>
 </main>
+<script>
+(function(){
+  var panels=[].slice.call(document.querySelectorAll('article.panel'));
+  var tabs=[].slice.call(document.querySelectorAll('nav.tabs a'));
+  var titles=['พื้นฐาน','ถาม-ตอบ','ข้อ 7','ข้อ 8'];
+  // section chips: jump within the current page
+  panels.forEach(function(p){
+    var secs=[].slice.call(p.querySelectorAll('section'));
+    if(secs.length<2) return;
+    var wrap=document.createElement('div');
+    var lab=document.createElement('p'); lab.className='chips-label'; lab.textContent='ข้ามไปที่';
+    var box=document.createElement('div'); box.className='chips';
+    secs.forEach(function(s){
+      var h=s.querySelector('h2'); if(!h) return;
+      var b=document.createElement('button'); b.type='button'; b.textContent=h.textContent;
+      b.onclick=function(){ s.scrollIntoView({behavior:'smooth',block:'start'}); };
+      box.appendChild(b);
+    });
+    wrap.appendChild(lab); wrap.appendChild(box);
+    var head=p.querySelector('.parthead');
+    if(head) head.insertAdjacentElement('afterend',wrap);
+  });
+  function show(id){
+    var idx=0; panels.forEach(function(p,i){ if(p.id===id) idx=i; });
+    panels.forEach(function(p,i){ p.hidden=(i!==idx); });
+    tabs.forEach(function(t,i){
+      t.classList.toggle('on',i===idx);
+      if(i===idx){ t.setAttribute('aria-current','page'); t.scrollIntoView({inline:'center',block:'nearest'}); }
+      else t.removeAttribute('aria-current');
+    });
+    document.title=titles[idx]+' | Fluid Final Term 1';
+  }
+  function go(id,scroll){
+    show(id);
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    if(scroll) window.scrollTo(0,0);
+  }
+  [].slice.call(document.querySelectorAll('nav.tabs a, .pager a')).forEach(function(a){
+    a.addEventListener('click',function(e){ e.preventDefault(); go(a.getAttribute('href').slice(1),true); });
+  });
+  window.addEventListener('hashchange',function(){ show((location.hash||'').slice(1)); });
+  show((location.hash||'').slice(1));
+})();
+</script>
 </body>
 </html>
