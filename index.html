@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="th" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Fluid Final Term 1: Dimensional Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg:      oklch(0.165 0.022 262);
+    --surface: oklch(0.205 0.026 262);
+    --line:    oklch(0.32 0.03 262);
+    --text:    oklch(0.93 0.012 262);
+    --muted:   oklch(0.76 0.025 262);
+    --amber:   oklch(0.83 0.125 78);
+    --rose:    oklch(0.78 0.12 20);
+    --serif: "Noto Serif Thai", Georgia, serif;
+    --sans:  "Noto Sans Thai", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 1.0625rem/1.85 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--amber); color: oklch(0.2 0.03 78); }
+  * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+
+  main { max-width: 46rem; margin: 0 auto; padding: clamp(2rem, 6vw, 4.5rem) 1rem 6rem; }
+  header { margin-bottom: 3rem; animation: rise 0.9s var(--ease) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { header { animation: none; } }
+
+  h1 { font-family: var(--serif); font-weight: 600; font-size: 2.5rem; line-height: 1.3; margin: 0 0 0.9rem; text-wrap: balance; }
+  .lede { color: var(--muted); max-width: 60ch; margin: 0; }
+  section { margin-top: 3.4rem; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 1.55rem; line-height: 1.4; margin: 0 0 1rem; text-wrap: balance; }
+  p { margin: 0 0 1rem; max-width: 68ch; }
+  b, strong { font-weight: 600; }
+  .muted { color: var(--muted); }
+  .muted .katex, .note .katex { color: var(--text); }
+  .note { color: var(--muted); font-size: 0.96rem; margin: 1rem 0 0; }
+  .hl { color: var(--amber); font-weight: 600; }
+
+  blockquote.th {
+    margin: 0 0 1rem; padding: 0.2rem 0 0.2rem 1.1rem; border-left: 3px solid var(--amber);
+    color: var(--muted); max-width: 68ch; line-height: 1.8;
+  }
+  blockquote.th .tag { display: block; font: 600 0.8rem/1 var(--sans); letter-spacing: 0.08em; color: var(--amber); margin-bottom: 0.5rem; }
+
+  .formula {
+    background: var(--surface); border-radius: 14px; padding: 0.5rem 1.25rem 0.9rem;
+    border: 1px solid var(--line); overflow-x: auto; margin: 0.8rem 0;
+  }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; margin: 1em 0; }
+  .katex { font-size: 1.1em; color: var(--text); }
+
+  table.dims { width: 100%; border-collapse: collapse; margin-top: 0.4rem; }
+  table.dims th, table.dims td { text-align: left; padding: 0.65rem 0.8rem; border-top: 1px solid var(--line); vertical-align: top; }
+  table.dims th { font-weight: 600; font-size: 0.85rem; color: var(--muted); border-top: 0; }
+  table.dims td.q { color: var(--amber); font-weight: 600; white-space: nowrap; }
+  table.dims tr:last-child td { border-bottom: 1px solid var(--line); }
+  .tscroll { overflow-x: auto; }
+
+  ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
+  ol.steps > li { counter-increment: s; position: relative; padding: 1.3rem 0 1.3rem 3.1rem; border-top: 1px solid var(--line); }
+  ol.steps > li:last-child { border-bottom: 1px solid var(--line); }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 1.1rem; font: 600 1.8rem/1.3 var(--serif); color: var(--amber); }
+  ol.steps h3 { font: 600 1.05rem/1.6 var(--sans); margin: 0 0 0.3rem; }
+  ol.steps p { color: var(--muted); margin-bottom: 0.5rem; }
+  ol.steps p .katex { color: var(--text); }
+  ol.steps .katex-display { margin: 0.6rem 0 0.2rem; text-align: left; }
+  ol.steps .katex-display > .katex { text-align: left; }
+  ol.steps .formula .katex-display, ol.steps .formula .katex-display > .katex { text-align: center; }
+  .sub { margin-top: 0.9rem; }
+
+  .final {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 0.4rem;
+  }
+  .final > div { background: var(--surface); padding: 1rem 1.1rem 0.6rem; }
+  .final .lbl { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.1rem; }
+  .final .katex-display { margin: 0.4em 0; text-align: left; }
+  .final .katex-display > .katex { text-align: left; color: var(--amber); font-size: 1.2em; }
+
+  ul.tips { list-style: none; padding: 0; margin: 0; }
+  ul.tips li { padding: 0.8rem 0 0.8rem 1.5rem; position: relative; max-width: 66ch; }
+  ul.tips li::before { content: ""; position: absolute; left: 0.2rem; top: 1.5rem; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+  ul.tips li.warn::before { background: var(--rose); }
+  ul.tips .lead { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 1.9rem; }
+    h2 { font-size: 1.3rem; }
+    .formula .katex { font-size: 1rem; }
+    .final { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    ol.steps > li { padding-left: 2.5rem; }
+    .formula { padding: 0.4rem 0.8rem 0.8rem; }
+  }
+
+  .final { grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+  h1.top { font-family: var(--serif); font-weight: 600; font-size: 2.6rem; line-height: 1.3; margin: 0 0 0.9rem; text-wrap: balance; }
+  .parthead { margin: 0 0 2rem; }
+  h2.part-title { font-family: var(--serif); font-weight: 600; font-size: 2rem; line-height: 1.35; margin: 0 0 0.7rem; color: var(--text); text-wrap: balance; }
+  article { margin-top: 6rem; padding-top: 3rem; border-top: 1px solid var(--line); }
+  article:first-of-type { margin-top: 3rem; }
+  nav.toc { display: grid; gap: 0.2rem; margin-top: 2rem; }
+  nav.toc a { color: var(--text); text-decoration: none; padding: 0.75rem 0; border-top: 1px solid var(--line); display: flex; gap: 1rem; align-items: baseline; }
+  nav.toc a:last-child { border-bottom: 1px solid var(--line); }
+  nav.toc a span { font: 600 1.4rem/1 var(--serif); color: var(--amber); min-width: 1.4rem; }
+  nav.toc a:hover { color: var(--amber); }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 640px) { h1.top { font-size: 1.9rem; } h2.part-title { font-size: 1.55rem; } }
+</style>
+</head>
+<body>
+<body>
+<main>
+<header>
+  <h1 class="top">Fluid Final Term 1: Dimensional Analysis</h1>
+  <p class="lede">สรุปเฉลยบทที่ 4 การวิเคราะห์เชิงมิติ แบบจำลอง และความคล้ายคลึงกัน (ตัวอย่างข้อ 7 และ 8) ทำตามลำดับขั้นของอาจารย์ คำอธิบายเป็นภาษาไทย</p>
+  
+<nav class="toc" aria-label="สารบัญ">
+  <a href="#basics"><span>1</span>พื้นฐาน: km/hr เป็น M L T</a>
+  <a href="#qa"><span>2</span>ถาม-ตอบ: ระบบ M L T และการตั้งฟังก์ชัน</a>
+  <a href="#p7"><span>3</span>เฉลยข้อ 7: เครื่องสูบน้ำ</a>
+  <a href="#p8"><span>4</span>เฉลยข้อ 8: ลมพัดผ่านโครงสร้างสะพาน</a>
+</nav>
+
+</header>
+<article id="basics">
+
+<div class="parthead"><h2 class="part-title">พื้นฐาน: เปลี่ยน km/hr เป็นมิติ M L T</h2><p class="lede">ข้อ 8 ให้ความเร็วลมเป็น $50\ \text{km/hr}$ แต่ใน Dimensional Analysis เราไม่ได้ใช้ตัวเลขและหน่วยนี้โดยตรง เราใช้ "มิติ" ของมัน ซึ่งก็คือ $LT^{-1}$ หน้านี้อธิบายว่ามาจากไหน</p></div>
+
+<section>
+  <h2>หน่วยกับมิติ ไม่ใช่สิ่งเดียวกัน</h2>
+  <p><b>หน่วย</b> (unit) คือสิ่งที่เราใช้วัด เช่น km, m, cm, hr, s ส่วน <b>มิติ</b> (dimension) คือ "ชนิด" ของสิ่งที่วัด มีแค่ 3 ชนิดสำหรับวิชานี้</p>
+  <div class="tscroll">
+  <table class="dims">
+    <thead><tr><th>มิติพื้นฐาน</th><th>สัญลักษณ์</th><th>หน่วยที่เป็นไปได้</th></tr></thead>
+    <tbody>
+      <tr><td class="q">มวล</td><td>$M$</td><td>kg, g, ton</td></tr>
+      <tr><td class="q">ความยาว</td><td>$L$</td><td>m, cm, mm, <span class="hl">km</span></td></tr>
+      <tr><td class="q">เวลา</td><td>$T$</td><td>s, min, <span class="hl">hr</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">ดังนั้น km, m, cm และ mm ล้วนมีมิติเดียวกันคือ $L$ ส่วน s, min และ hr ล้วนมีมิติเดียวกันคือ $T$ ขนาดของหน่วยต่างกัน แต่ชนิดเหมือนกัน</p>
+</section>
+
+<section>
+  <h2>ขั้นตอนเปลี่ยน km/hr เป็น M L T</h2>
+  <ol class="steps">
+
+    <li>
+      <h3>แยกหน่วยออกเป็นส่วนบนและส่วนล่าง</h3>
+      <p>ตัวเลข $50$ ไม่เกี่ยวกับมิติ ตัดทิ้งไปก่อน ดูแค่หน่วย</p>
+      <div class="split">
+        <div class="chip"><small>หน่วยที่โจทย์ให้</small><span class="big">km / hr</span></div>
+        <div class="arrow">→</div>
+        <div class="chip"><small>ส่วนบน และ ส่วนล่าง</small><span class="big">km  ,  hr</span></div>
+      </div>
+    </li>
+
+    <li>
+      <h3>ถามว่าแต่ละส่วนวัด "อะไร"</h3>
+      <p>km วัดระยะทาง ดังนั้นเป็นความยาว ส่วน hr วัดเวลา</p>
+      $$\text{km}\ \longrightarrow\ L \qquad\qquad \text{hr}\ \longrightarrow\ T$$
+    </li>
+
+    <li>
+      <h3>ประกอบกลับเป็นเศษส่วน</h3>
+      <p>ส่วนบนอยู่บน ส่วนล่างอยู่ล่าง แล้วเขียนเศษส่วนล่างเป็นเลขชี้กำลังลบ</p>
+      $$[V] = \frac{L}{T} = L\,T^{-1}$$
+      <p>ในรูป $M^{a}L^{b}T^{c}$ ครบทั้งสามตัวคือ</p>
+      <div class="formula">
+        $$[V] = M^{0}\,L^{1}\,T^{-1}$$
+      </div>
+      <p>วิธีเขียนที่ใช้ในข้อสอบ คือ $V = [LT^{-1}]$ ได้เลย ไม่ต้องเขียน $M^0$</p>
+    </li>
+
+    <li>
+      <h3>ตรวจว่าไม่มีมวล $M$</h3>
+      <p>ความเร็วเป็นแค่ระยะทางต่อเวลา ไม่มีกิโลกรัมอยู่ในหน่วย จึงไม่มี $M$ ถ้าคุณเขียนว่า $V$ มี $M$ แสดงว่าผิด</p>
+    </li>
+
+  </ol>
+</section>
+
+<section>
+  <h2>มิติไม่เปลี่ยน แม้เปลี่ยนหน่วย</h2>
+  <p>ความเร็วจะเป็น km/hr, m/s หรือ cm/s ก็ยังมีมิติ $LT^{-1}$ เหมือนเดิม ต่างกันแค่ตัวเลข ตอนที่ต้องใช้ตัวเลข (ในขั้นตอนสุดท้ายของโจทย์) ค่อยแปลงเป็น SI</p>
+  <div class="formula">
+    $$50\ \frac{\text{km}}{\text{hr}} = 50\times\frac{1000\ \text{m}}{3600\ \text{s}} = 13.89\ \text{m/s}$$
+  </div>
+  <p class="note">คูณ $\dfrac{1000}{3600}$ หรือหารด้วย $3.6$ ก็ได้ผลเหมือนกัน</p>
+  <p class="note">ข้อ 8 ยังมีขนาดแบบจำลอง $D_m = 20\ \text{mm}$ ซึ่งก็ควรแปลงเป็น $0.02\ \text{m}$ ก่อนใช้ตัวเลขเช่นกัน</p>
+</section>
+
+<section>
+  <h2>มิติของตัวแปรอื่นในข้อ 8</h2>
+  <p>ถ้าตั้งสมการเป็น $f = f(V, D, H, \rho, \mu)$ โดย $f$ คือความถี่ มิติของแต่ละตัวคือ</p>
+  <div class="tscroll">
+  <table class="dims">
+    <thead><tr><th>ตัวแปร</th><th>ความหมาย</th><th>หน่วยที่โจทย์ให้</th><th>มิติ</th></tr></thead>
+    <tbody>
+      <tr><td class="q">$V$</td><td>ความเร็วลม</td><td>km/hr</td><td>$[LT^{-1}]$</td></tr>
+      <tr><td class="q">$D$</td><td>เส้นผ่านศูนย์กลาง</td><td>m, mm</td><td>$[L]$</td></tr>
+      <tr><td class="q">$H$</td><td>ความสูง</td><td>m</td><td>$[L]$</td></tr>
+      <tr><td class="q">$f$</td><td>ความถี่</td><td>Hz</td><td>$[T^{-1}]$</td></tr>
+      <tr><td class="q">$\rho$</td><td>ความหนาแน่น</td><td>kg/m³</td><td>$[ML^{-3}]$</td></tr>
+      <tr><td class="q">$\mu$</td><td>ความหนืด</td><td>Pa·s</td><td>$[ML^{-1}T^{-1}]$</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">ความถี่: $1\ \text{Hz} = 1$ รอบต่อวินาที $= \dfrac{1}{\text{s}}$ จึงเป็น $T^{-1}$</p>
+</section>
+
+<section>
+  <h2>จุดที่มักพลาด</h2>
+  <ul class="tips">
+    <li class="warn"><span class="lead">เอา km หรือ hr ไปใส่ในสมการมิติ</span> เช่น เขียน $[V] = \text{km}\cdot T^{-1}$ ให้เปลี่ยน km เป็น $L$ ให้หมด ในสมการมิติต้องเหลือแค่ $M, L, T$</li>
+    <li class="warn"><span class="lead">ใส่ตัวเลข $50$ ลงในสมการมิติ</span> ตัวเลขใช้ตอนสุดท้ายเท่านั้น ในขั้น Buckingham $\Pi$ ใช้มิติล้วน ๆ</li>
+    <li><span class="lead">ลืมแปลงหน่วยก่อนคำนวณ</span> ถ้าเอา $50$ (km/hr) ไปคู่กับ $D$ (m) จะได้ผิดหน่วย ให้แปลงทุกตัวเป็น SI ก่อน คือ m, s, kg</li>
+    <li>ถ้าไม่แน่ใจมิติของตัวแปรไหน ให้นึกถึงสูตรที่รู้จัก เช่น $V = \dfrac{\text{ระยะทาง}}{\text{เวลา}}$ และ $P = \dfrac{F}{A}$ แล้วแตกเป็น $M, L, T$ เหมือนที่อาจารย์เขียนข้างโจทย์</li>
+    <li>เมื่อได้มิติครบแล้ว ขั้นต่อไปก็เหมือนข้อ 7 คือนับ $k$ กับ $r$ เลือกตัวแปรซ้ำ แล้วแก้ $\Pi$ ทีละตัว</li>
+  </ul>
+</section>
+
+</article>
+<article id="qa">
+<div class="parthead"><h2 class="part-title">ถาม-ตอบ: ทำความเข้าใจก่อนทำข้อสอบ</h2>
+<p class="lede">คำถามที่น่าจะสงสัยตอนทำข้อ 7 และ 8</p></div>
+
+<section>
+  <h2>ระบบ M L T คืออะไร และ M⁰ แปลว่าอะไร</h2>
+  <p>ใช่ ความเร็วเขียนเป็น $M^{0}L^{1}T^{-1}$ ได้ และไม่มี $M$ อยู่ในนั้น แต่ที่เป็น $0$ คือ <b>เลขชี้กำลัง</b> ของ $M$ ไม่ใช่ตัว $M$ เอง เพราะ $M^{0} = 1$ ตัว $M$ จึงหายไปเอง</p>
+  <ul class="tips">
+    <li>ระบบ M L T ใช้มวล ($M$) ความยาว ($L$) และเวลา ($T$) เป็นมิติพื้นฐาน ซึ่งเป็นระบบที่อาจารย์ใช้ เช่น ความดัน $= ML^{-1}T^{-2}$ (บางตำราใช้ F L T ที่ใช้แรงแทนมวล แต่วิชานี้ไม่ใช้)</li>
+    <li>ทุกปริมาณเขียนเป็น $M^{a}L^{b}T^{c}$ ได้ ตัวเลขชี้กำลังบอกว่ามีมิติพื้นฐานแต่ละตัวกี่ส่วน ความเร็วคือระยะทางต่อเวลา จึง $a=0,\ b=1,\ c=-1$</li>
+    <li>ในข้อสอบเขียน $V = [LT^{-1}]$ ได้เลย ไม่ต้องเขียน $M^0$ แต่ห้ามใส่ $M$</li>
+    <li>ตอนแก้ $\Pi$ เราตั้งให้เลขชี้กำลังของ $M, L, T$ เป็น $0$ ทั้งหมด จึงได้สมการ 3 สมการ ในข้อ 8 สมการของ $M$ สำหรับ $\Pi_1$ เหลือแค่ $C = 0$ เพราะ $f, V, D$ ไม่มีมวล</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ตัวหน้าวงเล็บ ($f$ หรือ $\phi$) คืออะไร</h2>
+  <p>ไม่ใช่ตัวแปร เป็นสัญลักษณ์ที่อ่านว่า "ฟังก์ชันของ" ไม่ได้เอาไปคูณกับอะไร</p>
+  $$\Delta P = f(Q,\ D,\ \rho,\ \mu)\quad\text{อ่านว่า "}\Delta P\text{ ขึ้นอยู่กับ }Q, D, \rho, \mu\text{"}$$
+  <p>ในข้อ 8 ตัวแปร $f$ คือ <b>ความถี่</b> จึงใช้ $\phi$ แทนคำว่าฟังก์ชัน จะได้ไม่ซ้ำกัน</p>
+</section>
+
+<section>
+  <h2>เลือกตัวไหนไว้หน้าวงเล็บ</h2>
+  <p>ตัวหน้าวงเล็บคือ "ผล" ที่เราสนใจ ส่วนตัวในวงเล็บคือ "เหตุ" หรือตัวที่ทำให้มันเปลี่ยน</p>
+  <ul class="tips">
+    <li><span class="lead">อ่านโจทย์ก่อน</span> ถ้ามีคำว่า "ขึ้นอยู่กับ" (เช่นข้อ 1–4) ตัวก่อนคำนี้คือตัวหน้าวงเล็บ ตัวหลังคำนี้คือตัวในวงเล็บ</li>
+    <li><span class="lead">ถ้าโจทย์ไม่บอก</span> ถามว่าอะไรคือสิ่งที่เราสนใจ และอะไรมีผลทางฟิสิกส์ ข้อ 8 ตั้งความถี่ $f$ ไว้หน้า เพราะเป็นสิ่งที่เราอยากรู้</li>
+    <li><span class="lead">ถ้าโจทย์พูดถึงของไหล</span> ต้องใส่ $\rho$ และ $\mu$ เสมอ ข้อ 7 คือน้ำ ข้อ 8 คืออากาศ และต้องใส่ขนาดที่ใช้สร้างแบบจำลอง เช่น $D$ และ $H$ ห้ามขาดและห้ามเกิน</li>
+    <li><span class="lead">ข้อ 7 ถามสองตัว ($Q$ และ $\Delta P$)</span> เลือกตัวไหนหน้าวงเล็บก็ได้ คำตอบไม่เปลี่ยน เพราะ Buckingham $\Pi$ ใช้แค่รายชื่อตัวแปรทั้งหมด (ต้องครบ 5 ตัว) ถ้าเขียนเป็น $Q = f(\Delta P, D, \rho, \mu)$ ก็ได้ $\Pi_1 = \dfrac{D^2\rho\,\Delta P}{\mu^2}$ และ $\Pi_2 = \dfrac{\rho Q}{D\mu}$ เหมือนเดิม และได้ $Q_m = 0.3\ \text{m}^3/\text{s}$ กับ $\Delta P_m = 10\,000\ \text{kPa}$</li>
+    <li><span class="lead">เหตุผลที่อาจารย์ตั้ง $\Delta P$ ไว้หน้า</span> เครื่องสูบน้ำ เราเป็นคนกำหนดอัตราการไหล $Q$ ได้ แล้วความดันที่เพิ่มขึ้น $\Delta P$ คือผลที่เครื่องสร้าง ถ้าไม่แน่ใจ ให้เลือกตัวใดตัวหนึ่งที่ถามได้เลย</li>
+    <li><span class="lead">ข้อ 8 ถามสามตัว</span> ($H_m$, $V_m$, $f_p$) แต่ผลที่เราสนใจคือ $f$ ส่วน $H$ และ $V$ อยู่ในวงเล็บ แล้วหาค่าจากการจับ $\Pi_2$ และ $\Pi_3$ ให้เท่ากัน</li>
+  </ul>
+</section>
+</article>
+<article id="p7">
+
+<div class="parthead"><h2 class="part-title">ข้อ 7: แบบจำลองเครื่องสูบน้ำ</h2><p class="lede">ตัวอย่างบทที่ 4 ข้อ 7 ทำตามลำดับขั้นของอาจารย์ นับ $k$ และ $r$ หามิติ เลือกตัวแปรซ้ำ แก้ $\Pi$ ทีละตัว แล้วจับคู่แบบจำลองกับ Prototype</p></div>
+
+<section>
+  <h2>โจทย์</h2>
+  <blockquote class="th">
+    <span class="tag">ตัวอย่างบทที่ 4 ข้อ 7</span>
+    การทดสอบ Prototype ของเครื่องสูบน้ำที่จะสูบน้ำด้วยอัตรา 1.5 m³/s โดยส่วนที่เป็นใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ 40 cm และความดันเพิ่มขึ้น 400 kPa โดยที่แบบจำลองมีใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ 8 cm จงหาอัตราการไหลและความดันที่เพิ่มขึ้นในแบบจำลอง กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ
+  </blockquote>
+
+  <div class="tscroll">
+  <table class="dims">
+    <thead><tr><th></th><th>แบบจำลอง</th><th>Prototype</th></tr></thead>
+    <tbody>
+      <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 1.5\ \text{m}^3/\text{s}$</td></tr>
+      <tr><td class="q">$D$</td><td>$D_m = 8\ \text{cm} = 0.08\ \text{m}$</td><td>$D_p = 40\ \text{cm} = 0.4\ \text{m}$</td></tr>
+      <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 400\ \text{kPa}$</td></tr>
+      <tr><td class="q">ของไหล</td><td>$\rho_m = \rho_p$</td><td>$\mu_m = \mu_p$ (น้ำทั้งคู่)</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>ขั้นตอน</h2>
+  <ol class="steps">
+
+    <li>
+      <h3>เขียนฟังก์ชัน แล้วนับ $k$ และ $r$</h3>
+      <p>ความดันที่เพิ่มขึ้นของเครื่องสูบน้ำขึ้นกับอัตราการไหล ขนาดใบพัด และสมบัติของของไหล</p>
+      $$\Delta P = f(Q,\ D,\ \rho,\ \mu)$$
+      <p class="sub">มีตัวแปรทั้งหมด $5$ ตัว ($\Delta P, Q, D, \rho, \mu$) และมิติพื้นฐาน $3$ ตัว ($M, L, T$) ตามทฤษฎีของบัคกิ้งแฮม จำนวนกลุ่มตัวแปรไม่มีมิติ คือ</p>
+      $$k = 5,\qquad r = 3,\qquad \text{จำนวน }\Pi = k - r = 5 - 3 = 2$$
+    </li>
+
+    <li>
+      <h3>หามิติของทุกตัวแปร</h3>
+      <p>ความดันคือแรงต่อพื้นที่ และแรงคือมวลคูณความเร่ง</p>
+      $$P = \frac{F}{A} = \frac{ma}{A} = M\left(\frac{L}{T^{2}}\right)\left(\frac{1}{L^{2}}\right) = ML^{-1}T^{-2}$$
+      <p class="sub">ความหนืดหามาจาก $\tau = \dfrac{F}{A} = \mu\dfrac{du}{dy}$ โดย $\dfrac{du}{dy}$ มีมิติ $\dfrac{L/T}{L} = T^{-1}$ ดังนั้น</p>
+      $$\mu = \frac{\tau}{du/dy} = \frac{ML^{-1}T^{-2}}{T^{-1}} = ML^{-1}T^{-1}$$
+      <div class="formula sub">
+        $$\Delta P = [ML^{-1}T^{-2}],\quad Q = [L^{3}T^{-1}],\quad D = [L],\quad \rho = [ML^{-3}],\quad \mu = [ML^{-1}T^{-1}]$$
+      </div>
+    </li>
+
+    <li>
+      <h3>เลือกตัวแปรซ้ำ และตัวแปรไม่ซ้ำ</h3>
+      <p>เลือก $r = 3$ ตัวที่รวมกันแล้วมีครบ $M$, $L$, $T$ และไม่เป็นตัวแปรไม่มีมิติ หรือมีมิติเหมือนกัน ส่วนที่เหลืออีก $2$ ตัวคือตัวแปรไม่ซ้ำ</p>
+      $$\text{ตัวแปรซ้ำ: } D,\ \rho,\ \mu \qquad\qquad \text{ตัวแปรไม่ซ้ำ: } \Delta P,\ Q$$
+      <p class="sub">$D$ ให้ $L$, $\rho$ ให้ $M$ และ $L$, และ $\mu$ ให้ $T$ ทั้งสามตัววัดได้ง่าย จึงเหมาะที่จะเป็นตัวแปรซ้ำ</p>
+    </li>
+
+    <li>
+      <h3>แก้ $\Pi_1$ (ตัวที่มี $\Delta P$)</h3>
+      <p>นำตัวแปรไม่ซ้ำคูณกับตัวแปรซ้ำที่ยกกำลังไม่ทราบค่า แล้วทำให้ไม่มีมิติ</p>
+      $$\Pi_1 = D^{A}\rho^{B}\mu^{C}\,\Delta P$$
+      $$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[ML^{-1}T^{-2}]$$
+      $$= M^{\,B+C+1}\;L^{\,A-3B-C-1}\;T^{\,-C-2}$$
+      <p class="sub">ให้เลขชี้กำลังของแต่ละมิติเป็นศูนย์</p>
+      $$\begin{aligned}
+      M:&\quad B + C + 1 = 0\\
+      L:&\quad A - 3B - C - 1 = 0\\
+      T:&\quad -C - 2 = 0
+      \end{aligned}$$
+      <p class="sub">เริ่มแก้จาก $T$ ซึ่งมีตัวไม่ทราบค่าตัวเดียว แล้วแทนกลับ</p>
+      $$\begin{aligned}
+      T:&\quad C = -2\\
+      M:&\quad B - 2 + 1 = 0 \;\Rightarrow\; B = 1\\
+      L:&\quad A - 3 + 2 - 1 = 0 \;\Rightarrow\; A = 2
+      \end{aligned}$$
+      <div class="formula sub">
+        $$\Pi_1 = \frac{D^{2}\,\rho\,\Delta P}{\mu^{2}}$$
+      </div>
+    </li>
+
+    <li>
+      <h3>แก้ $\Pi_2$ (ตัวที่มี $Q$)</h3>
+      $$\Pi_2 = D^{A}\rho^{B}\mu^{C}\,Q$$
+      $$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[L^{3}T^{-1}]$$
+      $$= M^{\,B+C}\;L^{\,A-3B-C+3}\;T^{\,-C-1}$$
+      $$\begin{aligned}
+      M:&\quad B + C = 0\\
+      L:&\quad A - 3B - C + 3 = 0\\
+      T:&\quad -C - 1 = 0
+      \end{aligned}
+      \qquad\Rightarrow\qquad
+      \begin{aligned}
+      T:&\quad C = -1\\
+      M:&\quad B = 1\\
+      L:&\quad A - 3 + 1 + 3 = 0 \;\Rightarrow\; A = -1
+      \end{aligned}$$
+      <div class="formula sub">
+        $$\Pi_2 = \frac{\rho\,Q}{D\,\mu}$$
+      </div>
+      <p class="sub">ตรวจว่า $\Pi$ แต่ละตัวไม่มีมิติจริง ถ้ายังเหลือมิติ แสดงว่าคำนวณผิด</p>
+      $$\Pi_1:\ \frac{L^{2}\cdot ML^{-3}\cdot ML^{-1}T^{-2}}{M^{2}L^{-2}T^{-2}} = \frac{M^{2}L^{-2}T^{-2}}{M^{2}L^{-2}T^{-2}} = 1$$
+      $$\Pi_2:\ \frac{ML^{-3}\cdot L^{3}T^{-1}}{L\cdot ML^{-1}T^{-1}} = \frac{MT^{-1}}{MT^{-1}} = 1$$
+      <p class="sub">ความสัมพันธ์ของสองตัวคือ $\Pi_1 = \phi(\Pi_2)$</p>
+    </li>
+
+    <li>
+      <h3>จับคู่แบบจำลองกับ Prototype ให้ $\Pi$ เท่ากัน</h3>
+      <p>ของไหลเป็นน้ำทั้งคู่ ดังนั้น $\rho_m = \rho_p$ และ $\mu_m = \mu_p$ จึงตัดกันไปได้ เหลือแค่เส้นผ่านศูนย์กลางและตัวที่ต้องการหา</p>
+
+      <p class="sub"><b>หาความดันที่เพิ่มขึ้นจาก $\Pi_1$</b></p>
+      $$\left[\frac{D^{2}\rho\,\Delta P}{\mu^{2}}\right]_m = \left[\frac{D^{2}\rho\,\Delta P}{\mu^{2}}\right]_p$$
+      $$D_m^{2}\,\Delta P_m = D_p^{2}\,\Delta P_p$$
+      $$\Delta P_m = \left(\frac{D_p}{D_m}\right)^{2}\Delta P_p = \left(\frac{0.4}{0.08}\right)^{2}(400\times 10^{3}\ \text{Pa})$$
+      $$\Delta P_m = 25\,(400\times 10^{3}) = 10\,000\ \text{kPa}$$
+
+      <p class="sub"><b>หาอัตราการไหลจาก $\Pi_2$</b></p>
+      $$\left[\frac{\rho\,Q}{D\,\mu}\right]_m = \left[\frac{\rho\,Q}{D\,\mu}\right]_p$$
+      $$\frac{Q_m}{D_m} = \frac{Q_p}{D_p}$$
+      $$Q_m = \left(\frac{D_m}{D_p}\right)Q_p = \left(\frac{0.08}{0.4}\right)(1.5) = 0.3\ \text{m}^3/\text{s}$$
+    </li>
+
+  </ol>
+</section>
+
+<section>
+  <h2>คำตอบ</h2>
+  <div class="final">
+    <div>
+      <p class="lbl">อัตราการไหลในแบบจำลอง</p>
+      $$Q_m = 0.3\ \text{m}^3/\text{s}$$
+    </div>
+    <div>
+      <p class="lbl">ความดันที่เพิ่มขึ้นในแบบจำลอง</p>
+      $$\Delta P_m = 10\,000\ \text{kPa}$$
+    </div>
+  </div>
+  <p class="note">$10\,000\ \text{kPa} = 10\ \text{MPa} = 1\times 10^{7}\ \text{Pa}$</p>
+</section>
+
+<section>
+  <h2>ตรวจคำตอบ</h2>
+  <p>$\Pi_2$ คือ Reynolds Number ในอีกรูปหนึ่ง เพราะ $Q = VA \propto V D^{2}$</p>
+  $$\Pi_2 = \frac{\rho Q}{D\mu} \sim \frac{\rho V D^{2}}{D\mu} = \frac{\rho V D}{\mu} = Re$$
+  <p>$Re$ เท่ากัน และของไหลเดียวกัน ทำให้ $V_m D_m = V_p D_p$ คือ $V_m = 5V_p$ จึงได้</p>
+  $$Q_m = V_m D_m^{2}\,\frac{\pi}{4} = 5V_p\left(\frac{D_p}{5}\right)^{2}\frac{\pi}{4} = \frac{Q_p}{5} = \frac{1.5}{5} = 0.3\ \text{m}^3/\text{s}\ \checkmark$$
+  <p class="muted">แบบจำลองเล็กลง $5$ เท่า แต่ความดันที่เพิ่มต้องสูงขึ้นถึง $25$ เท่า เป็นเรื่องปกติเมื่อใช้ของไหลเดิม เพราะการรักษา $Re$ ให้เท่ากันบังคับให้ความเร็วสูงขึ้นมาก</p>
+</section>
+
+<section>
+  <h2>ข้อควรระวัง</h2>
+  <ul class="tips">
+    <li class="warn"><span class="lead">ทิศทางของอัตราส่วน</span> $\Delta P_m = (D_p/D_m)^2\,\Delta P_p$ มี $D_p$ อยู่บน แต่ $Q_m = (D_m/D_p)\,Q_p$ กลับกัน ให้ย้ายข้างจากสมการเสมอ อย่าจำเอา</li>
+    <li>ของไหลเดียวกัน ดังนั้น $\rho$ และ $\mu$ ตัดกัน ให้ขีดฆ่าในใบทำเหมือนที่อาจารย์ทำ</li>
+    <li>แก้สมการมิติจาก $T$ ก่อนเสมอ เพราะมักมีตัวไม่ทราบค่าตัวเดียว แล้วค่อย $M$ และ $L$</li>
+    <li>$k - r$ ต้องเท่ากับจำนวน $\Pi$ ที่หาได้จริง ในข้อนี้คือ $2$</li>
+    <li>ตัวแปรซ้ำต้องเป็นชุดเดิมในทุก $\Pi$ ($D, \rho, \mu$) มีแค่ตัวไม่ซ้ำเท่านั้นที่เปลี่ยน</li>
+    <li class="warn"><span class="lead">หน่วย</span> เมื่อคูณ $400\ \text{kPa}$ ด้วย $25$ คำตอบยังเป็น kPa แต่ถ้าแทน $400\times10^3$ ให้เขียนว่า Pa แล้วแปลงกลับตอนท้าย และเขียนหน่วยในบรรทัดคำตอบเสมอ</li>
+    <li>เขียนที่มาของมิติ $P$ และ $\mu$ (ขั้นที่ 2) ในข้อสอบด้วย เพราะอาจารย์เขียนไว้ข้างโจทย์ คาดว่ามีคะแนนให้</li>
+  </ul>
+</section>
+
+</article>
+<article id="p8">
+
+<div class="parthead"><h2 class="part-title">ข้อ 8: ลมพัดผ่านโครงสร้างสะพาน</h2><p class="lede">ตัวอย่างบทที่ 4 ข้อ 8 ทำตามลำดับขั้นของอาจารย์เหมือนข้อ 7 นับตัวแปร หามิติ เลือกตัวแปรซ้ำ แก้ $\Pi$ ทีละตัว แล้วจับคู่แบบจำลองกับ Prototype</p></div>
+
+<section>
+  <h2>โจทย์</h2>
+  <blockquote class="th">
+    <span class="tag">ตัวอย่างบทที่ 4 ข้อ 8</span>
+    โครงสร้างส่วนหนึ่งของสะพานมีลักษณะดังรูป ลมที่พัดผ่านโครงสร้างนี้ จะทำให้เกิดลมที่ด้านท้ายของโครงสร้างที่มีความถี่หนึ่งๆ ... สำหรับโครงสร้างที่ต้องการออกแบบมีขนาด ดังนี้ D = 0.1 m, H = 0.3 m และความเร็วของลมเท่ากับ 50 km/hr ในที่นี้จะใช้อากาศเป็นตัวแทนของไหล แบบจำลองที่สร้างขึ้นเพื่อหาความถี่มีขนาดดังนี้ Dm = 20 mm โดยใช้น้ำที่อุณหภูมิ 20°C ในการทดสอบ จงหาความสูง Hm และความเร็วที่ใช้ในแบบจำลอง ถ้าความถี่ที่ใช้ในแบบจำลองเท่ากับ 49 Hz จงหาความถี่สำหรับ Prototype
+  </blockquote>
+  <p class="muted">ค่าสมบัติของของไหลมาจากโจทย์หน้า 17 ของไฟล์โจทย์: อากาศ $\mu = 1.79\times10^{-5}\ \text{kg}/(\text{m}\cdot\text{s})$, $\rho = 1.23\ \text{kg/m}^3$ และน้ำ $\mu = 1.00\times10^{-3}\ \text{kg}/(\text{m}\cdot\text{s})$, $\rho = 998\ \text{kg/m}^3$</p>
+
+  <div class="tscroll">
+  <table class="dims">
+    <thead><tr><th></th><th>แบบจำลอง (น้ำ)</th><th>Prototype (อากาศ)</th></tr></thead>
+    <tbody>
+      <tr><td class="q">$D$</td><td>$D_m = 20\ \text{mm} = 0.02\ \text{m}$</td><td>$D_p = 0.1\ \text{m}$</td></tr>
+      <tr><td class="q">$H$</td><td>$H_m = ?$</td><td>$H_p = 0.3\ \text{m}$</td></tr>
+      <tr><td class="q">$V$</td><td>$V_m = ?$</td><td>$V_p = 50\ \text{km/hr}$</td></tr>
+      <tr><td class="q">$f$</td><td>$f_m = 49\ \text{Hz}$</td><td>$f_p = ?$</td></tr>
+      <tr><td class="q">$\rho$</td><td>$998\ \text{kg/m}^3$</td><td>$1.23\ \text{kg/m}^3$</td></tr>
+      <tr><td class="q">$\mu$</td><td>$1.00\times10^{-3}\ \text{kg}/(\text{m}\cdot\text{s})$</td><td>$1.79\times10^{-5}\ \text{kg}/(\text{m}\cdot\text{s})$</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>ขั้นตอน</h2>
+  <ol class="steps">
+
+    <li>
+      <h3>เขียนฟังก์ชัน แล้วนับ $k$ และ $r$</h3>
+      <p>ความถี่ของลมวนด้านท้ายขึ้นกับความเร็วลม ขนาดของโครงสร้าง ($D$ และ $H$) และสมบัติของของไหล</p>
+      $$f = \phi(V,\ D,\ H,\ \rho,\ \mu)$$
+      <p class="sub">มีตัวแปรทั้งหมด $6$ ตัว ($f, V, D, H, \rho, \mu$) และมิติพื้นฐาน $3$ ตัว ($M, L, T$)</p>
+      $$k = 6,\qquad r = 3,\qquad \text{จำนวน }\Pi = k - r = 6 - 3 = 3$$
+    </li>
+
+    <li>
+      <h3>หามิติของทุกตัวแปร</h3>
+      <p>ความเร็วลม $50\ \text{km/hr}$ มีมิติเหมือน m/s เพราะ km คือความยาว และ hr คือเวลา ส่วนความถี่ Hz คือ $1/\text{s}$</p>
+      <div class="formula">
+        $$f = [T^{-1}],\quad V = [LT^{-1}],\quad D = [L],\quad H = [L],\quad \rho = [ML^{-3}],\quad \mu = [ML^{-1}T^{-1}]$$
+      </div>
+    </li>
+
+    <li>
+      <h3>เลือกตัวแปรซ้ำ และตัวแปรไม่ซ้ำ</h3>
+      <p>เลือก $r = 3$ ตัวที่รวมกันแล้วมีครบ $M$, $L$, $T$ ตามหลักในสไลด์ คือใช้ความยาว ความเร็ว และความหนาแน่นเป็นตัวแปรซ้ำ</p>
+      $$\text{ตัวแปรซ้ำ: } V,\ D,\ \rho \qquad\qquad \text{ตัวแปรไม่ซ้ำ: } f,\ H,\ \mu$$
+      <p class="sub">$V$ ให้ $T$, $\rho$ ให้ $M$, และ $D$ ให้ $L$ ไม่มีตัวไหนไม่มีมิติ และไม่มีสองตัวที่มิติเหมือนกัน (ส่วน $H$ มิติเหมือน $D$ จึงปล่อยเป็นตัวไม่ซ้ำ)</p>
+    </li>
+
+    <li>
+      <h3>แก้ $\Pi_1$ (ตัวที่มี $f$)</h3>
+      $$\Pi_1 = V^{A}D^{B}\rho^{C}\,f$$
+      $$M^{0}L^{0}T^{0} = [LT^{-1}]^{A}\,[L]^{B}\,[ML^{-3}]^{C}\,[T^{-1}] = M^{\,C}\;L^{\,A+B-3C}\;T^{\,-A-1}$$
+      $$\begin{aligned}
+      M:&\quad C = 0\\
+      L:&\quad A + B - 3C = 0\\
+      T:&\quad -A - 1 = 0
+      \end{aligned}
+      \qquad\Rightarrow\qquad
+      \begin{aligned}
+      T:&\quad A = -1\\
+      M:&\quad C = 0\\
+      L:&\quad -1 + B - 0 = 0 \;\Rightarrow\; B = 1
+      \end{aligned}$$
+      <div class="formula sub">
+        $$\Pi_1 = \frac{f\,D}{V}\qquad(\text{Strouhal Number})$$
+      </div>
+    </li>
+
+    <li>
+      <h3>แก้ $\Pi_2$ (ตัวที่มี $H$)</h3>
+      $$\Pi_2 = V^{A}D^{B}\rho^{C}\,H$$
+      $$M^{0}L^{0}T^{0} = [LT^{-1}]^{A}\,[L]^{B}\,[ML^{-3}]^{C}\,[L] = M^{\,C}\;L^{\,A+B-3C+1}\;T^{\,-A}$$
+      $$\begin{aligned}
+      M:&\quad C = 0\\
+      L:&\quad A + B - 3C + 1 = 0\\
+      T:&\quad -A = 0
+      \end{aligned}
+      \qquad\Rightarrow\qquad
+      \begin{aligned}
+      T:&\quad A = 0\\
+      M:&\quad C = 0\\
+      L:&\quad 0 + B + 1 = 0 \;\Rightarrow\; B = -1
+      \end{aligned}$$
+      <div class="formula sub">
+        $$\Pi_2 = \frac{H}{D}\qquad(\text{อัตราส่วนทางเรขาคณิต})$$
+      </div>
+    </li>
+
+    <li>
+      <h3>แก้ $\Pi_3$ (ตัวที่มี $\mu$)</h3>
+      $$\Pi_3 = V^{A}D^{B}\rho^{C}\,\mu$$
+      $$M^{0}L^{0}T^{0} = [LT^{-1}]^{A}\,[L]^{B}\,[ML^{-3}]^{C}\,[ML^{-1}T^{-1}] = M^{\,C+1}\;L^{\,A+B-3C-1}\;T^{\,-A-1}$$
+      $$\begin{aligned}
+      M:&\quad C + 1 = 0\\
+      L:&\quad A + B - 3C - 1 = 0\\
+      T:&\quad -A - 1 = 0
+      \end{aligned}
+      \qquad\Rightarrow\qquad
+      \begin{aligned}
+      T:&\quad A = -1\\
+      M:&\quad C = -1\\
+      L:&\quad -1 + B + 3 - 1 = 0 \;\Rightarrow\; B = -1
+      \end{aligned}$$
+      $$\Pi_3 = \frac{\mu}{V\,D\,\rho}$$
+      <p class="sub">กลับเศษส่วนได้ เพราะส่วนกลับของตัวที่ไม่มีมิติ ก็ยังไม่มีมิติ ซึ่งจะได้ Reynolds Number ตามที่คุ้นเคย</p>
+      <div class="formula">
+        $$\Pi_3 = \frac{\rho\,V\,D}{\mu}\qquad(\text{Reynolds Number})$$
+      </div>
+      <p class="sub">ตรวจมิติว่าไม่เหลือ $M, L, T$ ทั้งสามตัว</p>
+      $$\Pi_1:\ \frac{T^{-1}\cdot L}{LT^{-1}} = 1
+      \qquad
+      \Pi_2:\ \frac{L}{L} = 1
+      \qquad
+      \Pi_3:\ \frac{ML^{-3}\cdot LT^{-1}\cdot L}{ML^{-1}T^{-1}} = \frac{ML^{-1}T^{-1}}{ML^{-1}T^{-1}} = 1$$
+      <p class="sub">ความสัมพันธ์ของทั้งสามตัวคือ $\Pi_1 = \phi(\Pi_2, \Pi_3)$</p>
+    </li>
+
+    <li>
+      <h3>จับคู่แบบจำลองกับ Prototype</h3>
+      <p>ต้องให้ $\Pi_2$ และ $\Pi_3$ เท่ากันก่อน ได้แก่ รูปร่างคล้ายกัน และ Reynolds Number เท่ากัน ทำให้ $\Pi_1$ เท่ากันตามไปด้วย และนำไปหาความถี่ได้</p>
+      <p>เตรียมหน่วยให้เป็น SI ก่อนแทนค่า</p>
+      $$V_p = 50\ \frac{\text{km}}{\text{hr}} = 50\times\frac{1000}{3600} = 13.89\ \text{m/s}$$
+
+      <p class="sub"><b>หา $H_m$ จาก $\Pi_2$</b></p>
+      $$\left[\frac{H}{D}\right]_m = \left[\frac{H}{D}\right]_p
+      \;\Rightarrow\; H_m = \left(\frac{D_m}{D_p}\right)H_p = \left(\frac{0.02}{0.1}\right)(0.3) = 0.06\ \text{m}$$
+
+      <p class="sub"><b>หา $V_m$ จาก $\Pi_3$</b></p>
+      $$\left[\frac{\rho\,V\,D}{\mu}\right]_m = \left[\frac{\rho\,V\,D}{\mu}\right]_p$$
+      $$V_m = V_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_p}{D_m}\right)\left(\frac{\mu_m}{\mu_p}\right)$$
+      $$V_m = (13.89)\left(\frac{1.23}{998}\right)\left(\frac{0.1}{0.02}\right)\left(\frac{1.00\times10^{-3}}{1.79\times10^{-5}}\right)$$
+      $$V_m = (13.89)(0.001232)(5)(55.87) = 4.78\ \text{m/s}$$
+
+      <p class="sub"><b>หา $f_p$ จาก $\Pi_1$</b> (ต้องทำหลังสุด เพราะใช้ $V_m$)</p>
+      $$\left[\frac{f\,D}{V}\right]_m = \left[\frac{f\,D}{V}\right]_p
+      \;\Rightarrow\; f_p = f_m\left(\frac{D_m}{D_p}\right)\left(\frac{V_p}{V_m}\right)$$
+      $$f_p = (49)\left(\frac{0.02}{0.1}\right)\left(\frac{13.89}{4.78}\right) = (49)(0.2)(2.905) = 28.5\ \text{Hz}$$
+    </li>
+
+  </ol>
+</section>
+
+<section>
+  <h2>คำตอบ</h2>
+  <div class="final">
+    <div>
+      <p class="lbl">ความสูงแบบจำลอง</p>
+      $$H_m = 0.06\ \text{m}$$
+    </div>
+    <div>
+      <p class="lbl">ความเร็วในแบบจำลอง</p>
+      $$V_m = 4.78\ \text{m/s}$$
+    </div>
+    <div>
+      <p class="lbl">ความถี่ของ Prototype</p>
+      $$f_p = 28.5\ \text{Hz}$$
+    </div>
+  </div>
+  <p class="note">$H_m = 0.06\ \text{m} = 6\ \text{cm}$</p>
+</section>
+
+<section>
+  <h2>ตรวจคำตอบ</h2>
+  <p>เอาคำตอบกลับไปแทนใน $\Pi_3$ และ $\Pi_1$ ของทั้งสองฝั่ง ต้องได้ค่าเท่ากัน</p>
+  $$Re_p = \frac{(1.23)(13.89)(0.1)}{1.79\times10^{-5}} \approx 95\,400
+  \qquad
+  Re_m = \frac{(998)(4.78)(0.02)}{1.00\times10^{-3}} \approx 95\,400\ \checkmark$$
+  $$St_p = \frac{(28.5)(0.1)}{13.89} \approx 0.205
+  \qquad
+  St_m = \frac{(49)(0.02)}{4.78} \approx 0.205\ \checkmark$$
+  <p class="muted">ค่า Strouhal Number ประมาณ $0.2$ เป็นค่าปกติของลมวนด้านท้ายวัตถุทรงกระบอก จึงสมเหตุสมผล</p>
+</section>
+
+<section>
+  <h2>ข้อควรระวัง</h2>
+  <ul class="tips">
+    <li class="warn"><span class="lead">แปลงหน่วยก่อนแทนค่า</span> $50\ \text{km/hr}$ ต้องเป็น $13.89\ \text{m/s}$ และ $20\ \text{mm}$ ต้องเป็น $0.02\ \text{m}$ ถ้าลืม ค่า $V_m$ จะผิดทั้งหมด</li>
+    <li class="warn"><span class="lead">ลำดับการหาคำตอบ</span> ต้องหา $V_m$ ก่อน แล้วค่อยหา $f_p$ เพราะ $\Pi_1$ มี $V_m$ อยู่ในสมการ</li>
+    <li>ข้อนี้ของไหลของสองฝั่งต่างกัน (น้ำกับอากาศ) ดังนั้น $\rho$ และ $\mu$ ไม่ตัดกัน ต้องแทนค่าทั้งสองฝั่ง ต่างจากข้อ 7 ที่เป็นน้ำทั้งคู่</li>
+    <li>ถ้าเลือกตัวแปรซ้ำเป็น $D, \rho, \mu$ เหมือนข้อ 7 จะได้ $\Pi$ คนละหน้าตา คือ $\dfrac{\rho D^2 f}{\mu}$, $\dfrac{\rho D V}{\mu}$ และ $\dfrac{H}{D}$ แต่คำตอบสุดท้ายเท่ากันทุกตัว</li>
+    <li>เขียนสมการมิติของ $V$ ว่า $[LT^{-1}]$ ไม่ต้องมี $M$ และไม่ต้องเขียน km หรือ hr ในสมการมิติ</li>
+  </ul>
+</section>
+
+</article>
+<footer class="note" style="margin-top:5rem">เนื้อหาเรียบเรียงเอง ตรวจตัวเลขด้วยการคำนวณแยกต่างหากแล้ว หากพบจุดผิด ช่วยแจ้งด้วย</footer>
+</main>
+</body>
+</html>
