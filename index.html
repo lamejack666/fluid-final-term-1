@@ -189,6 +189,26 @@
   .sol .final .katex-display, .sol .final .katex-display > .katex { text-align: left; }
   @media print { details.key > summary::after { content: ""; } }
 
+  details.key { margin-top: 1.1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  details.key > summary { cursor: pointer; list-style: none; padding: 0.85rem 1.1rem; font-weight: 600; color: var(--amber); display: flex; justify-content: space-between; align-items: center; }
+  details.key > summary::-webkit-details-marker { display: none; }
+  details.key > summary::after { content: "+"; font: 500 1.5rem/1 var(--serif); }
+  details.key[open] > summary::after { content: "\2212"; }
+  details.key > summary:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 14px; }
+  .sol { padding: 0.2rem 1.1rem 1.2rem; border-top: 1px solid var(--line); }
+  .sol h4 { font: 600 1rem/1.5 var(--sans); margin: 1.4rem 0 0.2rem; }
+  .sol h4 .n { font: 600 1.25rem/1 var(--serif); color: var(--amber); margin-right: 0.5rem; }
+  .sol p { color: var(--muted); margin: 0.2rem 0 0.4rem; }
+  .sol p .katex { color: var(--text); }
+  .sol .katex-display { margin: 0.6em 0; text-align: left; }
+  .sol .katex-display > .katex { text-align: left; }
+  .sol .box { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 0.2rem 1rem; margin: 0.6rem 0; overflow-x: auto; }
+  .sol .box .katex-display, .sol .box .katex-display > .katex { text-align: center; }
+  .sol .final { border: 1px solid var(--amber); border-radius: 12px; padding: 0.3rem 1rem 0.5rem; margin-top: 1rem; }
+  .sol .final .lbl { color: var(--amber); font-weight: 600; margin: 0.5rem 0 0; }
+  .sol .final .katex-display, .sol .final .katex-display > .katex { text-align: left; }
+  @media print { details.key > summary::after { content: ""; } }
+
   .lv { display: inline-block; font: 600 0.8rem/1 var(--sans); padding: 0.4rem 0.8rem; border-radius: 999px; margin: 0 0 0.7rem; }
   p.lv { display: table; }
   .lede .lv { margin: 0 0.2rem 0 0; padding: 0.25rem 0.6rem; }
@@ -204,7 +224,7 @@
 <main>
 <header>
   <h1 class="top">Fluid Final Term 1: Dimensional Analysis</h1>
-  <p class="lede">เฉลยบทที่ 4 (ตัวอย่างข้อ 7 และ 8) เป็นภาษาไทย ทำตามลำดับขั้นของอาจารย์ พร้อมหน้าสรุปหน่วยและชุดฝึก Mock Quiz 5 ข้อ เลือกเรื่องที่ต้องการจากแท็บด้านล่าง</p>
+  <p class="lede">เฉลยบทที่ 4 (ตัวอย่างข้อ 7 และ 8) เป็นภาษาไทย ทำตามลำดับขั้นของอาจารย์ พร้อมหน้าสรุปหน่วยและชุดฝึก Mock Quiz 3 ข้อ เลือกเรื่องที่ต้องการจากแท็บด้านล่าง</p>
 </header>
 <nav class="tabs" aria-label="เลือกเรื่อง"><a href="#sum">สรุป</a><a href="#basics">พื้นฐาน</a><a href="#qa">ถาม-ตอบ</a><a href="#p7">ข้อ 7</a><a href="#p8">ข้อ 8</a><a href="#quiz">Mock Quiz</a></nav>
 <article class="panel" id="sum"><div class="parthead">
@@ -328,7 +348,7 @@
 <section>
   <p class="lv l2">ระดับ 2 · น่าจะออกรองลงมา</p>
   <h2>ของไหลต่างกัน และค่าสมบัติของไหล</h2>
-  <p class="muted">ข้อ 8 และ Mock Quiz ข้อ 5 ตัด $\rho$ และ $\mu$ ไม่ได้ ต้องแทนทั้งสองฝั่ง</p>
+  <p class="muted">ข้อ 8 และ Mock Quiz ข้อ 3 ตัด $\rho$ และ $\mu$ ไม่ได้ ต้องแทนทั้งสองฝั่ง</p>
   $$V_m = V_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_p}{D_m}\right)\left(\frac{\mu_m}{\mu_p}\right)\qquad
   Q_m = Q_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_m}{D_p}\right)\left(\frac{\mu_m}{\mu_p}\right)$$
   $$\Delta P_m = \Delta P_p\left(\frac{D_p}{D_m}\right)^{2}\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right)^{2}$$
@@ -918,9 +938,9 @@
   </ul>
 </section>
 
-<div class="chips-slot"></div><div class="pager"><a class="prev" href="#p7"><small>← ก่อนหน้า</small>ข้อ 7: เครื่องสูบน้ำ</a><a class="next" href="#quiz"><small>ถัดไป →</small>Mock Quiz: 5 ข้อฝึกพร้อมเฉลย</a></div></article>
+<div class="chips-slot"></div><div class="pager"><a class="prev" href="#p7"><small>← ก่อนหน้า</small>ข้อ 7: เครื่องสูบน้ำ</a><a class="next" href="#quiz"><small>ถัดไป →</small>Mock Quiz: 3 ข้อพร้อมเฉลย</a></div></article>
 <article class="panel" id="quiz">
-<div class="parthead"><h2 class="part-title">Mock Quiz: 5 ข้อฝึกพร้อมเฉลย</h2><p class="lede">โจทย์ยาวแบบข้อ 7 ของอาจารย์ ไม่บอกว่าตัวแปรขึ้นกับอะไร ต้องตั้งฟังก์ชันเอง ลองทำก่อน แล้วค่อยกดเปิดเฉลยทีละข้อ เวลาแนะนำประมาณ 8 นาทีต่อข้อ</p></div>
+<div class="parthead"><h2 class="part-title">Mock Quiz: 3 ข้อ พร้อมเฉลย</h2><p class="lede">ข้อ 1 และ 2 ทรงเดียวกับข้อ 7 ของอาจารย์ (ไม่บอกว่าตัวแปรขึ้นกับอะไร ต้องตั้งฟังก์ชันเอง) ข้อ 3 เผื่ออาจารย์พลิกแพลง ลองทำก่อน แล้วค่อยกดเปิดเฉลยทีละข้อ เวลาแนะนำข้อ 1 และ 2 ข้อละประมาณ 8 นาที ข้อ 3 ประมาณ 15 นาที</p></div>
 
 <section style="margin-top:0">
   <h2>ทุกข้อทำตามลำดับนี้</h2>
@@ -937,7 +957,30 @@
 <section>
   <h2>โจทย์</h2>
   <ol class="problems" style="counter-reset:none">
-<li><div class="qhead"><span class="qnum">1.</span></div><p class="stmt">ในการออกแบบเครื่องสูบน้ำสำหรับระบบประปาของโรงงานแห่งหนึ่ง วิศวกรได้สร้างแบบจำลองของเครื่องสูบน้ำขึ้นมาทดสอบก่อน โดยส่วนที่เป็นใบพัดของแบบจำลองมีเส้นผ่านศูนย์กลางเท่ากับ 5 cm สามารถสูบน้ำด้วยอัตรา 0.05 m<sup>3</sup>/s และวัดความดันที่เพิ่มขึ้นได้ 3,000 kPa ถ้าเครื่องสูบน้ำจริง (Prototype) มีใบพัดที่มีเส้นผ่านศูนย์กลางเท่ากับ 25 cm จงหาอัตราการไหลและความดันที่เพิ่มขึ้นของ Prototype กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ</p><details class="key"><summary>ดูเฉลยข้อ 1 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
+<li><div class="qhead"><span class="qnum">1.</span><span class="qtag">แบบข้อ 7 เป๊ะ</span></div><p class="stmt">เครื่องสูบน้ำของระบบส่งน้ำในอาคารแห่งหนึ่ง (Prototype) สูบน้ำด้วยอัตรา 2 m<sup>3</sup>/s โดยส่วนที่เป็นใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ 30 cm และทำให้ความดันของน้ำเพิ่มขึ้น 80 kPa ก่อนสร้างเครื่องจริง วิศวกรต้องการทดสอบด้วยแบบจำลอง (Model) ที่มีใบพัดเส้นผ่านศูนย์กลางเท่ากับ 6 cm จงหาอัตราการไหลและความดันที่เพิ่มขึ้นของแบบจำลอง กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ</p><details class="key"><summary>ดูเฉลยข้อ 1 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
+<p>ความดันที่เพิ่มขึ้นของปั๊มขึ้นกับอัตราการไหล ขนาดใบพัด และสมบัติของน้ำ</p>$$\Delta P = f(Q,\ D,\ \rho,\ \mu)\qquad k = 5,\quad r = 3,\quad \Pi = 5-3 = 2$$
+<h4><span class="n">2</span>มิติของตัวแปร</h4>
+<div class="box">$$\Delta P = [ML^{-1}T^{-2}],\ Q = [L^{3}T^{-1}],\ D = [L],\ \rho = [ML^{-3}],\ \mu = [ML^{-1}T^{-1}]$$</div>
+<h4><span class="n">3</span>ตัวแปรซ้ำ และไม่ซ้ำ</h4>
+$$\text{ซ้ำ: } D,\rho,\mu\qquad\text{ไม่ซ้ำ: } \Delta P,\ Q$$
+<h4><span class="n">4</span>แก้ $\Pi$ ทั้งสองตัว</h4>
+<p><b>$\Pi_{1}$ ที่มี $\Delta P$</b></p>
+$$\Pi_{1} = D^{A}\rho^{B}\mu^{C}\,\Delta P$$
+$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[ML^{-1}T^{-2}] = M^{\,B+C+1}\;L^{\,A-3B-C-1}\;T^{\,-C-2}$$
+$$\begin{aligned} M:&\quad B+C+1 = 0\\ L:&\quad A-3B-C-1 = 0\\ T:&\quad -C-2 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-2\\ M:&\ B=1\\ L:&\ A=2 \end{aligned}$$
+<div class="box">$$\Pi_{1} = \dfrac{D^{2}\rho\,\Delta P}{\mu^{2}}$$</div>
+<p><b>$\Pi_{2}$ ที่มี $Q$</b></p>
+$$\Pi_{2} = D^{A}\rho^{B}\mu^{C}\,Q$$
+$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[L^{3}T^{-1}] = M^{\,B+C}\;L^{\,A-3B-C+3}\;T^{\,-C-1}$$
+$$\begin{aligned} M:&\quad B+C = 0\\ L:&\quad A-3B-C+3 = 0\\ T:&\quad -C-1 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-1\\ M:&\ B=1\\ L:&\ A=-1 \end{aligned}$$
+<div class="box">$$\Pi_{2} = \dfrac{\rho\,Q}{D\,\mu}$$</div>
+
+<h4><span class="n">5</span>จับคู่ Model และ Prototype</h4>
+<p>ข้อนี้ให้ค่าของ Prototype แล้วให้หา Model เหมือนข้อ 7 ของอาจารย์ น้ำทั้งคู่ จึงตัด $\rho$ และ $\mu$ แปลง cm เป็น m ก่อน</p><div class="box">$$D_p = 0.3\ \text{m},\ Q_p = 2\ \text{m}^3/\text{s},\ \Delta P_p = 80\ \text{kPa}\qquad D_m = 0.06\ \text{m}$$</div>$$\Pi_1:\ D_m^{2}\Delta P_m = D_p^{2}\Delta P_p\ \Rightarrow\ \Delta P_m = \left(\frac{D_p}{D_m}\right)^{2}\Delta P_p$$$$\Pi_2:\ \frac{Q_m}{D_m} = \frac{Q_p}{D_p}\ \Rightarrow\ Q_m = \left(\frac{D_m}{D_p}\right)Q_p$$
+<h4><span class="n">6</span>แทนค่า</h4>
+$$\Delta P_m = \left(\frac{0.3}{0.06}\right)^{2}(80) = 25\times80 = 2000\ \text{kPa}$$$$Q_m = \left(\frac{0.06}{0.3}\right)(2) = 0.2\times2 = 0.4\ \text{m}^3/\text{s}$$<div class="final"><p class="lbl">คำตอบ</p>$$Q_m = 0.4\ \text{m}^3/\text{s},\qquad \Delta P_m = 2000\ \text{kPa}$$</div><p>เช็กทิศ: Model เล็กกว่า $5$ เท่า ไหลน้อยลง $5$ เท่า ส่วนความดันที่เพิ่มต้องมากขึ้น $25$ เท่า</p>
+</div></details></li>
+<li><div class="qhead"><span class="qnum">2.</span><span class="qtag">ข้อ 7 กลับทิศ: ให้ Model หา Prototype</span></div><p class="stmt">ในการออกแบบเครื่องสูบน้ำสำหรับระบบประปาของโรงงานแห่งหนึ่ง วิศวกรได้สร้างแบบจำลองของเครื่องสูบน้ำขึ้นมาทดสอบก่อน โดยส่วนที่เป็นใบพัดของแบบจำลองมีเส้นผ่านศูนย์กลางเท่ากับ 5 cm สามารถสูบน้ำด้วยอัตรา 0.05 m<sup>3</sup>/s และวัดความดันที่เพิ่มขึ้นได้ 3,000 kPa ถ้าเครื่องสูบน้ำจริง (Prototype) มีใบพัดที่มีเส้นผ่านศูนย์กลางเท่ากับ 25 cm จงหาอัตราการไหลและความดันที่เพิ่มขึ้นของ Prototype กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ</p><details class="key"><summary>ดูเฉลยข้อ 2 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
 <p>ความดันที่เพิ่มขึ้นของปั๊มขึ้นกับอัตราการไหล ขนาดใบพัด และสมบัติของน้ำ</p>$$\Delta P = f(Q,\ D,\ \rho,\ \mu)\qquad k = 5,\quad r = 3,\quad \Pi = 5-3 = 2$$
 <h4><span class="n">2</span>มิติของตัวแปร</h4>
 <div class="box">$$\Delta P = [ML^{-1}T^{-2}],\ Q = [L^{3}T^{-1}],\ D = [L],\ \rho = [ML^{-3}],\ \mu = [ML^{-1}T^{-1}]$$</div>
@@ -960,76 +1003,7 @@ $$\begin{aligned} M:&\quad B+C = 0\\ L:&\quad A-3B-C+3 = 0\\ T:&\quad -C-1 = 0 \
 <h4><span class="n">6</span>แทนค่า</h4>
 $$\Delta P_p = \left(\frac{0.05}{0.25}\right)^{2}(3000) = 0.04\times3000 = 120\ \text{kPa}$$$$Q_p = \left(\frac{0.25}{0.05}\right)(0.05) = 5\times0.05 = 0.25\ \text{m}^3/\text{s}$$<div class="final"><p class="lbl">คำตอบ</p>$$Q_p = 0.25\ \text{m}^3/\text{s},\qquad \Delta P_p = 120\ \text{kPa}$$</div><p>เช็กทิศ: Prototype ใหญ่กว่า $5$ เท่า ไหลมากขึ้น $5$ เท่า ส่วนความดันที่เพิ่มลดลง $25$ เท่า</p>
 </div></details></li>
-<li><div class="qhead"><span class="qnum">2.</span></div><p class="stmt">ถังกวนน้ำในโรงงานผลิตน้ำดื่มแห่งหนึ่ง ใช้ใบกวนที่มีเส้นผ่านศูนย์กลางเท่ากับ 40 cm หมุนด้วยความเร็วเชิงมุม 15 rad/s โดยต้องใช้แรงบิดในการหมุนเท่ากับ 200 N·m ในการออกแบบได้สร้างแบบจำลองของใบกวนที่มีเส้นผ่านศูนย์กลางเท่ากับ 10 cm มาทดสอบ จงหาความเร็วเชิงมุมและแรงบิดที่ใช้ในแบบจำลอง กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ</p><details class="key"><summary>ดูเฉลยข้อ 2 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
-<p>แรงบิดที่ใช้หมุนใบกวนขึ้นกับขนาดใบกวน ความเร็วในการหมุน และสมบัติของน้ำ</p>$$T = f(\omega,\ D,\ \rho,\ \mu)\qquad k=5,\quad r=3,\quad \Pi=2$$
-<h4><span class="n">2</span>มิติของตัวแปร</h4>
-<p>แรงบิดคือแรงคูณระยะทาง ความเร็วเชิงมุมคือรอบต่อเวลา</p>$$T = F\cdot L = (MLT^{-2})(L) = ML^{2}T^{-2}\qquad \omega = T^{-1}$$<div class="box">$$T = [ML^{2}T^{-2}],\ \omega = [T^{-1}],\ D = [L],\ \rho = [ML^{-3}],\ \mu = [ML^{-1}T^{-1}]$$</div>
-<h4><span class="n">3</span>ตัวแปรซ้ำ และไม่ซ้ำ</h4>
-$$\text{ซ้ำ: } D,\rho,\mu\qquad\text{ไม่ซ้ำ: } T,\ \omega$$
-<h4><span class="n">4</span>แก้ $\Pi$ ทั้งสองตัว</h4>
-<p><b>$\Pi_{1}$ ที่มี $T$</b></p>
-$$\Pi_{1} = D^{A}\rho^{B}\mu^{C}\,T$$
-$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[ML^{2}T^{-2}] = M^{\,B+C+1}\;L^{\,A-3B-C+2}\;T^{\,-C-2}$$
-$$\begin{aligned} M:&\quad B+C+1 = 0\\ L:&\quad A-3B-C+2 = 0\\ T:&\quad -C-2 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-2\\ M:&\ B=1\\ L:&\ A=-1 \end{aligned}$$
-<div class="box">$$\Pi_{1} = \dfrac{\rho\,T}{D\,\mu^{2}}$$</div>
-<p><b>$\Pi_{2}$ ที่มี $\omega$</b></p>
-$$\Pi_{2} = D^{A}\rho^{B}\mu^{C}\,\omega$$
-$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[T^{-1}] = M^{\,B+C}\;L^{\,A-3B-C}\;T^{\,-C-1}$$
-$$\begin{aligned} M:&\quad B+C = 0\\ L:&\quad A-3B-C = 0\\ T:&\quad -C-1 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-1\\ M:&\ B=1\\ L:&\ A=2 \end{aligned}$$
-<div class="box">$$\Pi_{2} = \dfrac{\rho\,D^{2}\omega}{\mu}$$</div>
-
-<h4><span class="n">5</span>จับคู่ Model และ Prototype</h4>
-<p>น้ำทั้งคู่ จึงตัด $\rho$ และ $\mu$ หน่วยเป็น SI อยู่แล้วหลังแปลง cm เป็น m</p><div class="box">$$D_p = 0.4\ \text{m},\ \omega_p = 15\ \text{rad/s},\ T_p = 200\ \text{N}\cdot\text{m}\qquad D_m = 0.1\ \text{m}$$</div>$$\Pi_2:\ D_m^{2}\omega_m = D_p^{2}\omega_p\ \Rightarrow\ \omega_m = \left(\frac{D_p}{D_m}\right)^{2}\omega_p$$$$\Pi_1:\ \frac{T_m}{D_m} = \frac{T_p}{D_p}\ \Rightarrow\ T_m = \left(\frac{D_m}{D_p}\right)T_p$$
-<h4><span class="n">6</span>แทนค่า</h4>
-$$\omega_m = \left(\frac{0.4}{0.1}\right)^{2}(15) = 16\times15 = 240\ \text{rad/s}$$$$T_m = \left(\frac{0.1}{0.4}\right)(200) = 0.25\times200 = 50\ \text{N}\cdot\text{m}$$<div class="final"><p class="lbl">คำตอบ</p>$$\omega_m = 240\ \text{rad/s},\qquad T_m = 50\ \text{N}\cdot\text{m}$$</div>
-</div></details></li>
-<li><div class="qhead"><span class="qnum">3.</span></div><p class="stmt">ท่อส่งน้ำสายหลักของเมืองแห่งหนึ่งมีเส้นผ่านศูนย์กลางเท่ากับ 60 cm น้ำไหลในท่อด้วยอัตรา 2 m<sup>3</sup>/s โดยความดันในท่อลดลงตามความยาวท่อ (Pressure Gradient) เท่ากับ 50 Pa/m ถ้าต้องการสร้างแบบจำลองของท่อนี้ในสัดส่วน 1:10 เพื่อนำมาทดสอบในห้องปฏิบัติการ จงหาอัตราการไหลและ Pressure Gradient ในแบบจำลอง กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ</p><details class="key"><summary>ดูเฉลยข้อ 3 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
-<p>อัตราการไหลในท่อขึ้นกับขนาดท่อ ความดันที่ลดลงตามความยาว และสมบัติของน้ำ</p>$$Q = f\!\left(D,\ \frac{dP}{dx},\ \rho,\ \mu\right)\qquad k=5,\ r=3,\ \Pi=2$$
-<h4><span class="n">2</span>มิติของตัวแปร</h4>
-<p>Pressure Gradient คือความดันต่อความยาว</p>$$\frac{dP}{dx} = \frac{ML^{-1}T^{-2}}{L} = ML^{-2}T^{-2}$$<div class="box">$$Q=[L^{3}T^{-1}],\ \dfrac{dP}{dx}=[ML^{-2}T^{-2}],\ D=[L],\ \rho=[ML^{-3}],\ \mu=[ML^{-1}T^{-1}]$$</div>
-<h4><span class="n">3</span>ตัวแปรซ้ำ และไม่ซ้ำ</h4>
-$$\text{ซ้ำ: } D,\rho,\mu\qquad\text{ไม่ซ้ำ: } Q,\ \tfrac{dP}{dx}$$
-<h4><span class="n">4</span>แก้ $\Pi$ ทั้งสองตัว</h4>
-<p><b>$\Pi_{1}$ ที่มี $G=\tfrac{dP}{dx}$</b></p>
-$$\Pi_{1} = D^{A}\rho^{B}\mu^{C}\,G=\tfrac{dP}{dx}$$
-$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[ML^{-2}T^{-2}] = M^{\,B+C+1}\;L^{\,A-3B-C-2}\;T^{\,-C-2}$$
-$$\begin{aligned} M:&\quad B+C+1 = 0\\ L:&\quad A-3B-C-2 = 0\\ T:&\quad -C-2 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-2\\ M:&\ B=1\\ L:&\ A=3 \end{aligned}$$
-<div class="box">$$\Pi_{1} = \dfrac{D^{3}\rho\,G}{\mu^{2}}$$</div>
-<p><b>$\Pi_{2}$ ที่มี $Q$</b></p>
-$$\Pi_{2} = D^{A}\rho^{B}\mu^{C}\,Q$$
-$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[L^{3}T^{-1}] = M^{\,B+C}\;L^{\,A-3B-C+3}\;T^{\,-C-1}$$
-$$\begin{aligned} M:&\quad B+C = 0\\ L:&\quad A-3B-C+3 = 0\\ T:&\quad -C-1 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-1\\ M:&\ B=1\\ L:&\ A=-1 \end{aligned}$$
-<div class="box">$$\Pi_{2} = \dfrac{\rho\,Q}{D\,\mu}$$</div>
-
-<h4><span class="n">5</span>จับคู่ Model และ Prototype</h4>
-<p>สัดส่วน $1:10$ ได้ $D_m = 0.06$ m น้ำทั้งคู่ จึงตัด $\rho$ และ $\mu$ (ให้ $G = dP/dx$)</p><div class="box">$$D_p = 0.6\ \text{m},\ Q_p = 2\ \text{m}^3/\text{s},\ G_p = 50\ \text{Pa/m}\qquad D_m = 0.06\ \text{m}$$</div>$$\Pi_1:\ D_m^{3}G_m = D_p^{3}G_p\ \Rightarrow\ G_m = \left(\frac{D_p}{D_m}\right)^{3}G_p$$$$\Pi_2:\ \frac{Q_m}{D_m} = \frac{Q_p}{D_p}\ \Rightarrow\ Q_m = \left(\frac{D_m}{D_p}\right)Q_p$$
-<h4><span class="n">6</span>แทนค่า</h4>
-$$G_m = \left(\frac{0.6}{0.06}\right)^{3}(50) = 1000\times50 = 50\,000\ \text{Pa/m}$$$$Q_m = \left(\frac{0.06}{0.6}\right)(2) = 0.1\times2 = 0.2\ \text{m}^3/\text{s}$$<div class="final"><p class="lbl">คำตอบ</p>$$Q_m = 0.2\ \text{m}^3/\text{s},\qquad \left(\frac{dP}{dx}\right)_m = 50\,000\ \text{Pa/m} = 50\ \text{kPa/m}$$</div>
-</div></details></li>
-<li><div class="qhead"><span class="qnum">4.</span></div><p class="stmt">ทุ่นทรงกลมที่ใช้ในการสำรวจใต้น้ำมีเส้นผ่านศูนย์กลางเท่ากับ 30 cm ถูกลากไปในน้ำด้วยความเร็ว 2 m/s และเกิดแรงต้านเท่ากับ 4 N ในการทดสอบได้สร้างแบบจำลองทรงกลมที่มีเส้นผ่านศูนย์กลางเท่ากับ 5 cm มาทดสอบในน้ำเช่นเดียวกัน จงหาความเร็วที่ใช้ในแบบจำลองและแรงต้านที่เกิดขึ้น พร้อมอธิบายว่าเพราะเหตุใดแรงต้านจึงได้ค่าดังกล่าว</p><details class="key"><summary>ดูเฉลยข้อ 4 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
-<p>แรงต้านบนทรงกลมขึ้นกับความเร็ว ขนาด และสมบัติของน้ำ</p>$$F = f(V,\ D,\ \rho,\ \mu)\qquad k=5,\ r=3,\ \Pi=2$$
-<h4><span class="n">2</span>มิติของตัวแปร</h4>
-<div class="box">$$F=[MLT^{-2}],\ V=[LT^{-1}],\ D=[L],\ \rho=[ML^{-3}],\ \mu=[ML^{-1}T^{-1}]$$</div>
-<h4><span class="n">3</span>ตัวแปรซ้ำ และไม่ซ้ำ</h4>
-$$\text{ซ้ำ: } D,\rho,\mu\qquad\text{ไม่ซ้ำ: } F,\ V$$
-<h4><span class="n">4</span>แก้ $\Pi$ ทั้งสองตัว</h4>
-<p><b>$\Pi_{1}$ ที่มี $F$</b></p>
-$$\Pi_{1} = D^{A}\rho^{B}\mu^{C}\,F$$
-$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[MLT^{-2}] = M^{\,B+C+1}\;L^{\,A-3B-C+1}\;T^{\,-C-2}$$
-$$\begin{aligned} M:&\quad B+C+1 = 0\\ L:&\quad A-3B-C+1 = 0\\ T:&\quad -C-2 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-2\\ M:&\ B=1\\ L:&\ A=0 \end{aligned}$$
-<div class="box">$$\Pi_{1} = \dfrac{\rho\,F}{\mu^{2}}$$</div><p>สังเกตว่า $D$ ไม่อยู่ใน $\Pi_1$ ($A=0$)</p>
-<p><b>$\Pi_{2}$ ที่มี $V$</b></p>
-$$\Pi_{2} = D^{A}\rho^{B}\mu^{C}\,V$$
-$$M^{0}L^{0}T^{0} = [L]^{A}\,[ML^{-3}]^{B}\,[ML^{-1}T^{-1}]^{C}\,[LT^{-1}] = M^{\,B+C}\;L^{\,A-3B-C+1}\;T^{\,-C-1}$$
-$$\begin{aligned} M:&\quad B+C = 0\\ L:&\quad A-3B-C+1 = 0\\ T:&\quad -C-1 = 0 \end{aligned}\qquad\Rightarrow\qquad \begin{aligned} T:&\ C=-1\\ M:&\ B=1\\ L:&\ A=1 \end{aligned}$$
-<div class="box">$$\Pi_{2} = \dfrac{\rho\,V\,D}{\mu}$$</div><p>คือ Reynolds Number</p>
-
-<h4><span class="n">5</span>จับคู่ Model และ Prototype</h4>
-<div class="box">$$D_p = 0.3\ \text{m},\ V_p = 2\ \text{m/s},\ F_p = 4\ \text{N}\qquad D_m = 0.05\ \text{m}$$</div>$$\Pi_2:\ V_mD_m = V_pD_p\ \Rightarrow\ V_m = \left(\frac{D_p}{D_m}\right)V_p$$$$\Pi_1:\ \frac{\rho_mF_m}{\mu_m^{2}} = \frac{\rho_pF_p}{\mu_p^{2}}\ \xrightarrow{\ \text{น้ำทั้งคู่}\ }\ F_m = F_p$$
-<h4><span class="n">6</span>แทนค่า และอธิบาย</h4>
-$$V_m = \left(\frac{0.3}{0.05}\right)(2) = 6\times2 = 12\ \text{m/s}$$$$F_m = F_p = 4\ \text{N}$$<div class="final"><p class="lbl">คำตอบ</p>$$V_m = 12\ \text{m/s},\qquad F_m = 4\ \text{N}$$</div><p><b>ทำไมแรงต้านเท่ากัน:</b> $\Pi_1 = \dfrac{\rho F}{\mu^2}$ ไม่มี $D$ และไม่มี $V$ ถ้าใช้ของไหลเดียวกัน ($\rho$ และ $\mu$ เท่ากัน) แล้วทำให้ $Re$ เท่ากัน ตัวเดียวที่ยังเปลี่ยนได้คือ $F$ ซึ่งต้องเท่ากันด้วย</p>
-</div></details></li>
-<li><div class="qhead"><span class="qnum">5.</span><span class="qtag hard">ยากกว่า: ของไหลต่างกัน</span></div><p class="stmt">การทดสอบ Prototype ของเครื่องสูบน้ำที่จะสูบน้ำด้วยอัตรา 0.8 m<sup>3</sup>/s โดยส่วนที่เป็นใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ 40 cm และความดันเพิ่มขึ้น 200 kPa โดยที่แบบจำลองมีใบพัดที่มีเส้นผ่านศูนย์กลางเท่ากับ 10 cm และทดสอบด้วยน้ำมัน จงหาอัตราการไหลและความดันที่เพิ่มขึ้นในแบบจำลอง กำหนดให้น้ำมีความหนาแน่น 1000 kg/m<sup>3</sup> ความหนืด 1.0×10<sup>-3</sup> kg/(m·s) และน้ำมันมีความหนาแน่น 800 kg/m<sup>3</sup> ความหนืด 2.0×10<sup>-3</sup> kg/(m·s)</p><details class="key"><summary>ดูเฉลยข้อ 5 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
+<li><div class="qhead"><span class="qnum">3.</span><span class="qtag hard">เผื่อพลิกแพลง: ของไหลต่างกัน + ข้อย่อยเพิ่ม</span></div><p class="stmt">เครื่องสูบน้ำมันเชื้อเพลิงของโรงงานแห่งหนึ่ง (Prototype) สูบน้ำมันที่มีความหนาแน่น 800 kg/m<sup>3</sup> และความหนืด 4.0×10<sup>-3</sup> kg/(m·s) ด้วยอัตรา 90 L/s โดยส่วนที่เป็นใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ 30 cm และทำให้ความดันเพิ่มขึ้น 150 kPa วิศวกรต้องการทดสอบด้วยแบบจำลอง (Model) ที่มีใบพัดเส้นผ่านศูนย์กลางเท่ากับ 10 cm โดยใช้น้ำ (ความหนาแน่น 1000 kg/m<sup>3</sup> ความหนืด 1.0×10<sup>-3</sup> kg/(m·s)) เป็นของไหลทดสอบ<br>ก) จงหาอัตราการไหล (หน่วย L/s) และความดันที่เพิ่มขึ้นของแบบจำลอง<br>ข) จงตรวจสอบว่าค่า Π ของสองฝั่งเท่ากัน และบอกว่า Π ที่มี Q คือเลขอะไร<br>ค) จงหากำลังที่ใช้สูบ (กำลัง = ความดันที่เพิ่ม × อัตราการไหล) ของ Prototype และแบบจำลอง<br>ง) ถ้าเพิ่มความเร็วรอบ ω ของใบพัดเข้าไปเป็นตัวแปรอีกตัว จะมี Π กี่ตัว และ Π ตัวใหม่คืออะไร</p><details class="key"><summary>ดูเฉลยข้อ 3 ทีละขั้น</summary><div class="sol"><h4><span class="n">1</span>เขียนฟังก์ชัน นับ $k$ และ $r$</h4>
 <p>ความดันที่เพิ่มขึ้นของปั๊มขึ้นกับอัตราการไหล ขนาดใบพัด และสมบัติของน้ำ</p>$$\Delta P = f(Q,\ D,\ \rho,\ \mu)\qquad k = 5,\quad r = 3,\quad \Pi = 5-3 = 2$$
 <h4><span class="n">2</span>มิติของตัวแปร</h4>
 <div class="box">$$\Delta P = [ML^{-1}T^{-2}],\ Q = [L^{3}T^{-1}],\ D = [L],\ \rho = [ML^{-3}],\ \mu = [ML^{-1}T^{-1}]$$</div>
@@ -1048,10 +1022,10 @@ $$\begin{aligned} M:&\quad B+C = 0\\ L:&\quad A-3B-C+3 = 0\\ T:&\quad -C-1 = 0 \
 <div class="box">$$\Pi_{2} = \dfrac{\rho\,Q}{D\,\mu}$$</div>
 
 <h4><span class="n">5</span>จับคู่ Model และ Prototype</h4>
-<p>ข้อนี้ของไหลต่างกัน จึงตัด $\rho$ และ $\mu$ ไม่ได้ ต้องคงไว้ทั้งสองฝั่ง</p><div class="box">$$\begin{array}{lcc} & \text{Model (น้ำมัน)} & \text{Prototype (น้ำ)}\\ D & 0.1\ \text{m} & 0.4\ \text{m}\\ \rho & 800 & 1000\\ \mu & 2.0\times10^{-3} & 1.0\times10^{-3}\\ Q & ? & 0.8\ \text{m}^3/\text{s}\\ \Delta P & ? & 200\ \text{kPa} \end{array}$$</div>$$\Pi_2:\ \frac{\rho_mQ_m}{D_m\mu_m} = \frac{\rho_pQ_p}{D_p\mu_p}\ \Rightarrow\ Q_m = Q_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_m}{D_p}\right)\left(\frac{\mu_m}{\mu_p}\right)$$$$\Pi_1:\ \frac{D_m^{2}\rho_m\Delta P_m}{\mu_m^{2}} = \frac{D_p^{2}\rho_p\Delta P_p}{\mu_p^{2}}\ \Rightarrow\ \Delta P_m = \Delta P_p\left(\frac{D_p}{D_m}\right)^{2}\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right)^{2}$$
-<h4><span class="n">6</span>แทนค่า</h4>
-$$Q_m = (0.8)\left(\frac{1000}{800}\right)\left(\frac{0.1}{0.4}\right)\left(\frac{2.0\times10^{-3}}{1.0\times10^{-3}}\right) = 0.8\times1.25\times0.25\times2 = 0.5\ \text{m}^3/\text{s}$$$$\Delta P_m = (200)\left(\frac{0.4}{0.1}\right)^{2}\left(\frac{1000}{800}\right)\left(\frac{2.0}{1.0}\right)^{2} = 200\times16\times1.25\times4 = 16\,000\ \text{kPa}$$<div class="final"><p class="lbl">คำตอบ</p>$$Q_m = 0.5\ \text{m}^3/\text{s},\qquad \Delta P_m = 16\,000\ \text{kPa}$$</div><p>เช็ก: $Re = \dfrac{\rho V D}{\mu}$ ของสองฝั่งเท่ากันที่ $2\times10^{6}$ ✓</p>
-</div></details></li>
+<p>ข้อนี้ของไหลต่างกัน (Prototype เป็นน้ำมัน Model เป็นน้ำ) จึงตัด $\rho$ และ $\mu$ ไม่ได้ ต้องคงไว้ทั้งสองฝั่ง และแปลงหน่วยก่อน: $90\ \text{L/s} = 0.09\ \text{m}^3/\text{s}$, $30\ \text{cm} = 0.3\ \text{m}$, $10\ \text{cm} = 0.1\ \text{m}$</p><div class="box">$$\begin{array}{lcc} & \text{Model (น้ำ)} & \text{Prototype (น้ำมัน)}\\ D & 0.1\ \text{m} & 0.3\ \text{m}\\ \rho & 1000 & 800\\ \mu & 1.0\times10^{-3} & 4.0\times10^{-3}\\ Q & ? & 0.09\ \text{m}^3/\text{s}\\ \Delta P & ? & 150\ \text{kPa} \end{array}$$</div>$$\Pi_2:\ \frac{\rho_mQ_m}{D_m\mu_m} = \frac{\rho_pQ_p}{D_p\mu_p}\ \Rightarrow\ Q_m = Q_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_m}{D_p}\right)\left(\frac{\mu_m}{\mu_p}\right)$$$$\Pi_1:\ \frac{D_m^{2}\rho_m\Delta P_m}{\mu_m^{2}} = \frac{D_p^{2}\rho_p\Delta P_p}{\mu_p^{2}}\ \Rightarrow\ \Delta P_m = \Delta P_p\left(\frac{D_p}{D_m}\right)^{2}\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right)^{2}$$
+<h4><span class="n">6</span>แทนค่า (ข้อ ก)</h4>
+$$Q_m = (0.09)\left(\frac{800}{1000}\right)\left(\frac{0.1}{0.3}\right)\left(\frac{1.0\times10^{-3}}{4.0\times10^{-3}}\right) = 0.09\times0.8\times\tfrac{1}{3}\times0.25 = 0.006\ \text{m}^3/\text{s}$$$$\Delta P_m = (150)\left(\frac{0.3}{0.1}\right)^{2}\left(\frac{800}{1000}\right)\left(\frac{1.0}{4.0}\right)^{2} = 150\times9\times0.8\times0.0625 = 67.5\ \text{kPa}$$<div class="final"><p class="lbl">คำตอบ ข้อ ก</p>$$Q_m = 0.006\ \text{m}^3/\text{s} = 6\ \text{L/s},\qquad \Delta P_m = 67.5\ \text{kPa}$$</div>
+<h4><span class="n">ข</span>ตรวจว่า $\Pi$ ของสองฝั่งเท่ากัน</h4><p>ใช้หน่วย SI ทั้งหมด ($\Delta P$ เป็น Pa)</p>$$\Pi_2 = \frac{\rho Q}{D\mu}:\quad \text{Prototype } \frac{800(0.09)}{0.3(4.0\times10^{-3})} = 6\times10^{4},\qquad \text{Model } \frac{1000(0.006)}{0.1(1.0\times10^{-3})} = 6\times10^{4}\ \checkmark$$$$\Pi_1 = \frac{D^{2}\rho\,\Delta P}{\mu^{2}}:\quad \text{Prototype } 6.75\times10^{11},\qquad \text{Model } 6.75\times10^{11}\ \checkmark$$<p>$\Pi_2$ คือ Reynolds Number ในรูปที่ใช้ $Q$ แทน $V$: เพราะ $Q = VD^{2}$ จึงได้ $\dfrac{\rho Q}{D\mu} = \dfrac{\rho V D}{\mu} = Re$</p><h4><span class="n">ค</span>กำลังที่ใช้สูบ</h4><p>กำลัง = ความดันที่เพิ่ม คูณ อัตราการไหล มิติของมันคือ</p>$$\Delta P\cdot Q = [ML^{-1}T^{-2}][L^{3}T^{-1}] = ML^{2}T^{-3}\ \ (\text{W})$$$$\text{Prototype: } (150\,000)(0.09) = 13\,500\ \text{W} = 13.5\ \text{kW}$$$$\text{Model: } (67\,500)(0.006) = 405\ \text{W}$$<div class="final"><p class="lbl">คำตอบ ข้อ ค</p>$$P_p = 13.5\ \text{kW},\qquad P_m = 405\ \text{W}\quad(P_m/P_p = 0.03)$$</div><h4><span class="n">ง</span>ถ้าเพิ่มความเร็วรอบ $\omega$ เข้าไปในฟังก์ชัน</h4>$$\Delta P = f(Q,\ D,\ \rho,\ \mu,\ \omega)\qquad k = 6,\quad r = 3,\quad \Pi = 6-3 = 3$$<p>ตัวแปรซ้ำยังเป็น $D,\rho,\mu$ ได้ ตัวแปรไม่ซ้ำมี $\Delta P,\ Q,\ \omega$ ดังนั้น $\Pi_1$ และ $\Pi_2$ เหมือนเดิม ต้องแก้เพิ่มแค่ตัวที่มี $\omega = [T^{-1}]$</p>$$\Pi_3 = D^{A}\rho^{B}\mu^{C}\,\omega\quad\Rightarrow\quad T:\ -C-1 = 0,\ \ M:\ B+C = 0,\ \ L:\ A-3B-C = 0\ \Rightarrow\ C=-1,\ B=1,\ A=2$$<div class="box">$$\Pi_3 = \frac{\rho\,D^{2}\omega}{\mu}$$</div><p>$\Pi$ ใหม่ผสมกันได้ เช่น $\dfrac{\Pi_3}{\Pi_2} = \dfrac{\omega D^{3}}{Q}$ ซึ่งเป็นสัมประสิทธิ์การไหลของปั๊ม</p></div></details></li>
   </ol>
 </section>
 
