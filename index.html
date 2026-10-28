@@ -189,6 +189,14 @@
   .sol .final .katex-display, .sol .final .katex-display > .katex { text-align: left; }
   @media print { details.key > summary::after { content: ""; } }
 
+  .lv { display: inline-block; font: 600 0.8rem/1 var(--sans); padding: 0.4rem 0.8rem; border-radius: 999px; margin: 0 0 0.7rem; }
+  p.lv { display: table; }
+  .lede .lv { margin: 0 0.2rem 0 0; padding: 0.25rem 0.6rem; }
+  .l1 { background: var(--amber); color: oklch(0.2 0.03 78); }
+  .l2 { border: 1px solid var(--amber); color: var(--amber); }
+  .l3 { border: 1px solid var(--line); color: var(--muted); }
+  tr.hot td:first-child { box-shadow: inset 3px 0 0 var(--amber); }
+
 </style>
 </head>
 <body>
@@ -201,68 +209,169 @@
 <nav class="tabs" aria-label="เลือกเรื่อง"><a href="#sum">สรุป</a><a href="#basics">พื้นฐาน</a><a href="#qa">ถาม-ตอบ</a><a href="#p7">ข้อ 7</a><a href="#p8">ข้อ 8</a><a href="#quiz">Mock Quiz</a></nav>
 <article class="panel" id="sum"><div class="parthead">
   <h2 class="part-title">สรุป: หน่วย มิติ และสูตรที่ต้องจำ</h2>
-  <p class="lede">หน้าเดียวสำหรับเปิดดูก่อนสอบ รวมมิติ $M, L, T$ ของตัวแปร หน่วยที่ต้องแปลง กลุ่มไม่มีมิติ สัดส่วน Model กับ Prototype และข้อที่น่าจะออกเพิ่มจากไฟล์โจทย์ของอาจารย์</p>
+  <p class="lede">เรียงตามความสำคัญ <span class="lv l1">ระดับ 1</span> ต้องจำให้ได้ (เท่าที่ใช้ในข้อ 7) <span class="lv l2">ระดับ 2</span> น่าจะออกรองลงมา <span class="lv l3">ระดับ 3</span> เผื่อออก อ่านระดับ 1 ให้คล่องก่อน แล้วค่อยลงไปข้างล่าง</p>
 </div>
 
 <section>
-  <h2>มิติของตัวแปรที่ต้องจำ</h2>
-  <p class="muted">เขียนมิติทุกครั้งในรูป $M^{a}L^{b}T^{c}$ ตัวที่ไม่มีมิติพื้นฐานนั้นให้เลขชี้กำลังเป็น $0$ (ไม่ต้องเขียน) ระวัง $T$ ที่เป็นมิติเวลา กับ $T$ ที่เป็นแรงบิด คนละความหมาย</p>
+  <p class="lv l1">ระดับ 1 · ต้องจำให้ได้</p>
+  <h2>ข้อ 7: ตัวแปรและมิติ</h2>
+  <p class="muted">ปั๊มน้ำ $\Delta P = f(Q, D, \rho, \mu)$ ตัวที่ถามอยู่หน้าวงเล็บ ต้องรู้ที่มาของ $P$ และ $\mu$ เพราะอาจารย์เขียนไว้ข้างโจทย์</p>
+  <div class="tscroll">
+  <table class="dims">
+    <thead><tr><th>ตัวแปร</th><th>ความหมาย</th><th>มิติ</th><th>ที่มา</th></tr></thead>
+    <tbody>
+      <tr class="hot"><td class="q">$\Delta P$</td><td>ความดันเพิ่มขึ้น</td><td>$[ML^{-1}T^{-2}]$</td><td>$P = \dfrac{F}{A} = \dfrac{ma}{A} = M\dfrac{L}{T^{2}}\dfrac{1}{L^{2}}$</td></tr>
+      <tr class="hot"><td class="q">$Q$</td><td>อัตราการไหล</td><td>$[L^{3}T^{-1}]$</td><td>ปริมาตรต่อเวลา</td></tr>
+      <tr class="hot"><td class="q">$D$</td><td>เส้นผ่านศูนย์กลางใบพัด</td><td>$[L]$</td><td>ความยาว</td></tr>
+      <tr class="hot"><td class="q">$\rho$</td><td>ความหนาแน่น</td><td>$[ML^{-3}]$</td><td>มวลต่อปริมาตร</td></tr>
+      <tr class="hot"><td class="q">$\mu$</td><td>ความหนืด</td><td>$[ML^{-1}T^{-1}]$</td><td>$\tau = \mu\dfrac{du}{dy}$ และ $\dfrac{du}{dy} = T^{-1}$ ดังนั้น $\mu = \dfrac{ML^{-1}T^{-2}}{T^{-1}}$</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <p class="lv l1">ระดับ 1 · ต้องจำให้ได้</p>
+  <h2>ข้อ 7: ผลที่ต้องจำให้ขึ้นใจ</h2>
+  <div class="formula">
+    $$k = 5,\qquad r = 3,\qquad \Pi = k - r = 2$$
+    $$\text{ตัวแปรซ้ำ: } D,\ \rho,\ \mu\qquad\qquad \text{ตัวแปรไม่ซ้ำ: } \Delta P,\ Q$$
+    $$\Pi_1 = \frac{D^{2}\,\rho\,\Delta P}{\mu^{2}}\quad(A=2,\ B=1,\ C=-2)\qquad\qquad \Pi_2 = \frac{\rho\,Q}{D\,\mu}\quad(A=-1,\ B=1,\ C=-1)$$
+  </div>
+  <p style="margin-top:1.2rem"><b>จับคู่แบบจำลอง (m) กับ Prototype (p) ของไหลเดียวกัน ตัด $\rho, \mu$ ทิ้ง</b></p>
+  <div class="formula">
+    $$\Delta P_m = \left(\frac{D_p}{D_m}\right)^{2}\Delta P_p\qquad\qquad Q_m = \left(\frac{D_m}{D_p}\right)Q_p$$
+    $$\Delta P_m = \left(\frac{0.4}{0.08}\right)^{2}(400) = 10\,000\ \text{kPa}\qquad\qquad Q_m = \left(\frac{0.08}{0.4}\right)(1.5) = 0.3\ \text{m}^3/\text{s}$$
+  </div>
+  <p class="note">จำง่าย ๆ: $\Delta P$ มี $D$ กำลังสอง และ $D_p$ อยู่บน ส่วน $Q$ มี $D$ กำลังหนึ่ง และ $D_m$ อยู่บน ให้ย้ายข้างจากสมการเสมอ อย่าจำทิศ</p>
+</section>
+
+<section>
+  <p class="lv l1">ระดับ 1 · ต้องจำให้ได้</p>
+  <h2>6 ขั้นของอาจารย์</h2>
+  <ol class="steps">
+    <li><h3>เขียนฟังก์ชัน นับ $k$ และ $r$</h3><p>จำนวน $\Pi = k - r$ ตัวที่ถามอยู่หน้าวงเล็บ ตัวที่เหลือคือเหตุ ถ้ามีของไหลใส่ $\rho$ และ $\mu$</p></li>
+    <li><h3>เขียนมิติ $M, L, T$ ของทุกตัวแปร</h3><p>เขียนที่มาของ $P$ และ $\mu$ ด้วย</p></li>
+    <li><h3>เลือกตัวแปรซ้ำ $r$ ตัว</h3><p>รวมกันต้องมีครบ $M, L, T$ ไม่ซ้ำมิติกัน และไม่ใช่ตัวไม่มีมิติ (ข้อ 7: $D, \rho, \mu$)</p></li>
+    <li><h3>แก้ $\Pi$ ทีละตัว</h3><p>$\Pi = D^{A}\rho^{B}\mu^{C}\times(\text{ตัวไม่ซ้ำ})$ ตั้งเลขชี้กำลังของ $M, L, T$ เป็น $0$ แก้จาก $T$ ก่อน แล้ว $M$ และ $L$</p></li>
+    <li><h3>เขียนตาราง Model และ Prototype</h3><p>แปลงหน่วยเป็น SI แล้วดูว่าของไหลเดียวกันหรือไม่</p></li>
+    <li><h3>ให้ $\Pi_m = \Pi_p$ แล้วแก้หาค่า</h3><p>ใส่หน่วยในคำตอบ และหาตัวที่ใช้ผลของตัวอื่นไว้ทีหลัง</p></li>
+  </ol>
+</section>
+
+<section>
+  <p class="lv l1">ระดับ 1 · ต้องจำให้ได้</p>
+  <h2>หน่วยที่ต้องแปลงในข้อ 7 และข้อกันพลาด</h2>
+  <ul class="tips">
+    <li><span class="lead">cm เป็น m</span> หาร $100$ เช่น $40\ \text{cm} = 0.4\ \text{m}$ และ $8\ \text{cm} = 0.08\ \text{m}$</li>
+    <li><span class="lead">kPa เป็น Pa</span> คูณ $10^{3}$ ($400\ \text{kPa} = 4\times10^{5}\ \text{Pa}$) แต่อัตราส่วนที่คูณกันยังเป็น kPa ได้ ให้ใส่หน่วยท้ายคำตอบเสมอ</li>
+    <li class="warn"><span class="lead">ทิศของอัตราส่วน</span> $\Delta P_m$ ใช้ $(D_p/D_m)^2$ แต่ $Q_m$ ใช้ $D_m/D_p$ ผิดทิศคือพลาดทั้งข้อ</li>
+    <li><span class="lead">ตรวจก่อนส่ง</span> ทุก $\Pi$ ต้องไม่เหลือมิติ $M, L, T$ เลย ถ้าเหลือ แสดงว่าคำนวณเลขชี้กำลังผิด</li>
+    <li><span class="lead">ของไหลเดียวกัน</span> ขีดฆ่า $\rho$ และ $\mu$ ในสมการให้เห็น เหมือนที่อาจารย์ทำ</li>
+  </ul>
+</section>
+
+<section>
+  <p class="lv l2">ระดับ 2 · น่าจะออกรองลงมา</p>
+  <h2>มิติของตัวแปรอื่นที่พบบ่อย</h2>
+  <p class="muted">แถวที่มีแถบสีทองคือตัวที่ใช้ในข้อ 7 ที่เหลือใช้ในข้อ 8 และ Mock Quiz ระวัง $T$ ที่เป็นมิติเวลา กับ $T$ ที่เป็นแรงบิด คนละความหมาย</p>
   <div class="tscroll">
   <table class="dims">
     <thead><tr><th>ปริมาณ</th><th>สัญลักษณ์</th><th>มิติ</th><th>หน่วย SI</th></tr></thead>
     <tbody>
-      <tr><td>ความยาว, เส้นผ่านศูนย์กลาง, ความสูง, ความขรุขระ</td><td class="q">$L, D, H, \varepsilon$</td><td>$[L]$</td><td>m</td></tr>
-      <tr><td>มวล</td><td class="q">$m$</td><td>$[M]$</td><td>kg</td></tr>
-      <tr><td>เวลา</td><td class="q">$t$</td><td>$[T]$</td><td>s</td></tr>
-      <tr><td>พื้นที่</td><td class="q">$A$</td><td>$[L^{2}]$</td><td>m²</td></tr>
-      <tr><td>ปริมาตร</td><td class="q">$\forall$</td><td>$[L^{3}]$</td><td>m³</td></tr>
+      <tr class="hot"><td>ความยาว, เส้นผ่านศูนย์กลาง, ความสูง, ความขรุขระ</td><td class="q">$L, D, H, \varepsilon$</td><td>$[L]$</td><td>m</td></tr>
+      <tr class="hot"><td>อัตราการไหล</td><td class="q">$Q$</td><td>$[L^{3}T^{-1}]$</td><td>m³/s</td></tr>
+      <tr class="hot"><td>ความดัน, ความเค้นเฉือน</td><td class="q">$P, \Delta P, \tau$</td><td>$[ML^{-1}T^{-2}]$</td><td>Pa = N/m²</td></tr>
+      <tr class="hot"><td>ความหนาแน่น</td><td class="q">$\rho$</td><td>$[ML^{-3}]$</td><td>kg/m³</td></tr>
+      <tr class="hot"><td>ความหนืดสัมบูรณ์ (พลวัต)</td><td class="q">$\mu$</td><td>$[ML^{-1}T^{-1}]$</td><td>Pa·s = N·s/m² = kg/(m·s)</td></tr>
       <tr><td>ความเร็ว, ความเร็วเสียง</td><td class="q">$V, c$</td><td>$[LT^{-1}]$</td><td>m/s</td></tr>
-      <tr><td>ความเร่ง, ความเร่งโน้มถ่วง</td><td class="q">$a, g$</td><td>$[LT^{-2}]$</td><td>m/s²</td></tr>
-      <tr><td>อัตราการไหล</td><td class="q">$Q$</td><td>$[L^{3}T^{-1}]$</td><td>m³/s</td></tr>
       <tr><td>ความถี่</td><td class="q">$f$</td><td>$[T^{-1}]$</td><td>Hz = 1/s</td></tr>
       <tr><td>ความเร็วเชิงมุม</td><td class="q">$\omega$</td><td>$[T^{-1}]$</td><td>rad/s</td></tr>
-      <tr><td>ความหนาแน่น</td><td class="q">$\rho$</td><td>$[ML^{-3}]$</td><td>kg/m³</td></tr>
-      <tr><td>น้ำหนักจำเพาะ</td><td class="q">$\gamma = \rho g$</td><td>$[ML^{-2}T^{-2}]$</td><td>N/m³</td></tr>
       <tr><td>แรง</td><td class="q">$F$</td><td>$[MLT^{-2}]$</td><td>N = kg·m/s²</td></tr>
-      <tr><td>ความดัน, ความเค้นเฉือน</td><td class="q">$P, \Delta P, \tau$</td><td>$[ML^{-1}T^{-2}]$</td><td>Pa = N/m²</td></tr>
-      <tr><td>Pressure Gradient</td><td class="q">$dP/dx$</td><td>$[ML^{-2}T^{-2}]$</td><td>Pa/m</td></tr>
-      <tr><td>ความหนืดสัมบูรณ์ (พลวัต)</td><td class="q">$\mu$</td><td>$[ML^{-1}T^{-1}]$</td><td>Pa·s = N·s/m² = kg/(m·s)</td></tr>
-      <tr><td>ความหนืดจลน์</td><td class="q">$\nu = \mu/\rho$</td><td>$[L^{2}T^{-1}]$</td><td>m²/s</td></tr>
       <tr><td>แรงบิด, งาน, พลังงาน</td><td class="q">$T, W$</td><td>$[ML^{2}T^{-2}]$</td><td>N·m = J</td></tr>
+      <tr><td>Pressure Gradient</td><td class="q">$dP/dx$</td><td>$[ML^{-2}T^{-2}]$</td><td>Pa/m</td></tr>
+      <tr><td>น้ำหนักจำเพาะ</td><td class="q">$\gamma = \rho g$</td><td>$[ML^{-2}T^{-2}]$</td><td>N/m³</td></tr>
+      <tr><td>ความหนืดจลน์</td><td class="q">$\nu = \mu/\rho$</td><td>$[L^{2}T^{-1}]$</td><td>m²/s</td></tr>
+      <tr><td>ความเร่ง, ความเร่งโน้มถ่วง</td><td class="q">$a, g$</td><td>$[LT^{-2}]$</td><td>m/s²</td></tr>
       <tr><td>กำลัง</td><td class="q">$\dot W$</td><td>$[ML^{2}T^{-3}]$</td><td>W = J/s</td></tr>
       <tr><td>แรงตึงผิว</td><td class="q">$\sigma$</td><td>$[MT^{-2}]$</td><td>N/m</td></tr>
+      <tr><td>พื้นที่, ปริมาตร, มวล, เวลา</td><td class="q">$A, \forall, m, t$</td><td>$[L^{2}], [L^{3}], [M], [T]$</td><td>m², m³, kg, s</td></tr>
       <tr><td>มุม, ความถ่วงจำเพาะ, $\Pi$ ทุกตัว</td><td class="q">—</td><td>ไม่มีมิติ ($M^0L^0T^0$)</td><td>—</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="note">วิธีไม่ต้องจำ: แตกจากสูตรที่รู้ เช่น $P = \dfrac{F}{A}$ และ $F = ma$ ได้ $ML^{-1}T^{-2}$ ส่วน $\mu$ ได้จาก $\tau = \mu\dfrac{du}{dy}$ ได้ $ML^{-1}T^{-1}$ ถ้าอาจารย์เขียนข้างโจทย์ ให้เขียนที่มาลงในข้อสอบด้วย</p>
+  <p class="note">วิธีไม่ต้องจำ: แตกจากสูตรที่รู้ เช่น $F = ma$, $P = F/A$ และ $\tau = \mu\,du/dy$</p>
 </section>
 
 <section>
-  <h2>หน่วยที่ต้องแปลงก่อนแทนค่า</h2>
-  <p class="muted">แปลงทุกตัวเป็น SI (m, s, kg, N, Pa) ก่อนแทนค่าเสมอ ตัวที่เป็นอัตราส่วนล้วน เช่น $D_p/D_m$ จะไม่ต้องแปลง ถ้าหน่วยเดียวกัน</p>
+  <p class="lv l2">ระดับ 2 · น่าจะออกรองลงมา</p>
+  <h2>ผลลัพธ์ของไหลเดียวกัน (ตัวแปรอื่น)</h2>
+  <p class="muted">ใช้ได้เมื่อ $\rho_m = \rho_p$ และ $\mu_m = \mu_p$ ให้ $n = \dfrac{D_p}{D_m}$ (Prototype ใหญ่กว่า Model กี่เท่า) แถวบนสุดสองแถวคือของข้อ 7</p>
+  <div class="tscroll">
+  <table class="dims">
+    <thead><tr><th>ตัวแปร</th><th>$\Pi$ ที่ใช้</th><th>ค่าของ Model</th></tr></thead>
+    <tbody>
+      <tr class="hot"><td class="q">$\Delta P$ ความดันเพิ่ม</td><td>$\dfrac{D^{2}\rho\,\Delta P}{\mu^{2}}$</td><td>$\Delta P_m = n^{2}\,\Delta P_p$</td></tr>
+      <tr class="hot"><td class="q">$Q$ อัตราการไหล</td><td>$\dfrac{\rho Q}{D\mu}$</td><td>$Q_m = Q_p/n$</td></tr>
+      <tr><td class="q">$V$ ความเร็ว</td><td>$\dfrac{\rho V D}{\mu}$</td><td>$V_m = n\,V_p$</td></tr>
+      <tr><td class="q">$\omega$ ความเร็วเชิงมุม</td><td>$\dfrac{\rho D^{2}\omega}{\mu}$</td><td>$\omega_m = n^{2}\,\omega_p$</td></tr>
+      <tr><td class="q">$T$ แรงบิด</td><td>$\dfrac{\rho T}{D\mu^{2}}$</td><td>$T_m = T_p/n$</td></tr>
+      <tr><td class="q">$dP/dx$</td><td>$\dfrac{D^{3}\rho\,(dP/dx)}{\mu^{2}}$</td><td>$(dP/dx)_m = n^{3}\,(dP/dx)_p$</td></tr>
+      <tr><td class="q">$F$ แรง</td><td>$\dfrac{\rho F}{\mu^{2}}$</td><td>$F_m = F_p$ (เท่ากัน)</td></tr>
+      <tr><td class="q">$\dot W$ กำลัง</td><td>$\dfrac{D\rho^{2}\dot W}{\mu^{3}}$</td><td>$\dot W_m = n\,\dot W_p$</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">ตารางนี้ถูกเมื่อตัวแปรเป็นไปตามที่ตั้ง เช่น $\Delta P = f(Q, D, \rho, \mu)$ ถ้าตั้งต่างออกไป ต้องแก้ $\Pi$ ใหม่</p>
+</section>
+
+<section>
+  <p class="lv l2">ระดับ 2 · น่าจะออกรองลงมา</p>
+  <h2>ของไหลต่างกัน และค่าสมบัติของไหล</h2>
+  <p class="muted">ข้อ 8 และ Mock Quiz ข้อ 5 ตัด $\rho$ และ $\mu$ ไม่ได้ ต้องแทนทั้งสองฝั่ง</p>
+  $$V_m = V_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_p}{D_m}\right)\left(\frac{\mu_m}{\mu_p}\right)\qquad
+  Q_m = Q_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_m}{D_p}\right)\left(\frac{\mu_m}{\mu_p}\right)$$
+  $$\Delta P_m = \Delta P_p\left(\frac{D_p}{D_m}\right)^{2}\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right)^{2}$$
+  <div class="tscroll">
+  <table class="dims">
+    <thead><tr><th>ของไหล (จากไฟล์โจทย์)</th><th>$\rho\ (\text{kg/m}^3)$</th><th>$\mu\ (\text{Pa}\cdot\text{s})$</th><th>ใช้ในข้อ</th></tr></thead>
+    <tbody>
+      <tr><td class="q">อากาศ</td><td>$1.23$</td><td>$1.79\times10^{-5}$</td><td>ข้อ 8</td></tr>
+      <tr><td class="q">น้ำ ($20^\circ\text{C}$)</td><td>$998$</td><td>$1.00\times10^{-3}$</td><td>ข้อ 8</td></tr>
+      <tr><td class="q">น้ำจืด</td><td>$1000$</td><td>$0.001$</td><td>ข้อ 9</td></tr>
+      <tr><td class="q">น้ำทะเล</td><td>$1036$</td><td>$0.0012$</td><td>ข้อ 9</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <p class="lv l2">ระดับ 2 · น่าจะออกรองลงมา</p>
+  <h2>หน่วยที่ต้องแปลงก่อนแทนค่า (ครบ)</h2>
+  <p class="muted">แปลงเป็น SI (m, s, kg, N, Pa) เสมอ ตัวอัตราส่วนล้วน เช่น $D_p/D_m$ ไม่ต้องแปลง ถ้าหน่วยเดียวกัน</p>
   <div class="tscroll">
   <table class="dims">
     <thead><tr><th>จาก</th><th>เป็น SI</th><th>ตัวอย่าง</th></tr></thead>
     <tbody>
+      <tr class="hot"><td class="q">cm, mm, km</td><td>หาร $100$, หาร $1000$, คูณ $1000$ เป็น m</td><td>$20\ \text{mm} = 0.02\ \text{m}$</td></tr>
+      <tr class="hot"><td class="q">kPa, MPa</td><td>คูณ $10^{3}$, $10^{6}$ เป็น Pa</td><td>$400\ \text{kPa} = 4\times10^{5}\ \text{Pa}$</td></tr>
       <tr><td class="q">km/hr</td><td>หาร $3.6$ เป็น m/s</td><td>$50\ \text{km/hr} = 13.89\ \text{m/s}$</td></tr>
-      <tr><td class="q">cm, mm, km</td><td>หาร $100$, หาร $1000$, คูณ $1000$ เป็น m</td><td>$20\ \text{mm} = 0.02\ \text{m}$</td></tr>
-      <tr><td class="q">kPa, MPa</td><td>คูณ $10^{3}$, $10^{6}$ เป็น Pa</td><td>$400\ \text{kPa} = 4\times10^{5}\ \text{Pa}$</td></tr>
       <tr><td class="q">bar, atm</td><td>$1\ \text{bar} = 100\ \text{kPa}$, $1\ \text{atm} \approx 101.3\ \text{kPa}$</td><td>$3\ \text{bar} = 300\ \text{kPa}$</td></tr>
       <tr><td class="q">L/s, m³/hr</td><td>คูณ $10^{-3}$, หาร $3600$ เป็น m³/s</td><td>$120\ \text{L/s} = 0.12\ \text{m}^3/\text{s}$</td></tr>
       <tr><td class="q">rpm</td><td>คูณ $\dfrac{2\pi}{60}$ เป็น rad/s</td><td>$60\ \text{rpm} = 6.28\ \text{rad/s}$</td></tr>
       <tr><td class="q">Hz และ $\omega$</td><td>$1\ \text{Hz} = 1\ \text{รอบ/s}$ และ $\omega = 2\pi f$</td><td>$10\ \text{Hz} = 62.8\ \text{rad/s}$</td></tr>
-      <tr><td class="q">cP (centipoise)</td><td>คูณ $10^{-3}$ เป็น Pa·s</td><td>$1\ \text{cP} = 10^{-3}\ \text{Pa}\cdot\text{s}$</td></tr>
+      <tr><td class="q">cP</td><td>คูณ $10^{-3}$ เป็น Pa·s</td><td>$1\ \text{cP} = 10^{-3}\ \text{Pa}\cdot\text{s}$</td></tr>
       <tr><td class="q">g/cm³</td><td>คูณ $1000$ เป็น kg/m³</td><td>$0.8\ \text{g/cm}^3 = 800\ \text{kg/m}^3$</td></tr>
       <tr><td class="q">$g$</td><td>ใช้ $9.81\ \text{m/s}^2$</td><td></td></tr>
     </tbody>
   </table>
   </div>
-  <p class="note">$\text{N}\cdot\text{s/m}^2$, $\text{Pa}\cdot\text{s}$ และ $\text{kg/(m}\cdot\text{s)}$ คือหน่วยเดียวกัน ข้อ 8 และ 9 ในไฟล์โจทย์เขียนต่างกัน แต่ใช้แทนกันได้</p>
+  <p class="note">N·s/m², Pa·s และ kg/(m·s) คือหน่วยเดียวกัน ใช้แทนกันได้</p>
 </section>
 
 <section>
-  <h2>กลุ่มไม่มีมิติที่ต้องรู้จัก</h2>
+  <p class="lv l3">ระดับ 3 · เผื่อออก</p>
+  <h2>กลุ่มไม่มีมิติ และเงื่อนไข Model กับ Prototype</h2>
   <p class="muted">จากสไลด์ ch4 หน้า 17 ($l$ คือความยาวลักษณะเฉพาะ เช่น $D$)</p>
   <div class="tscroll">
   <table class="dims">
@@ -277,70 +386,40 @@
     </tbody>
   </table>
   </div>
-  <p class="note">สไลด์เขียน Strouhal เป็น $\dfrac{l\omega}{V}$ โดยใช้ $\omega$ แทนความถี่ ถ้าโจทย์ให้เป็น Hz ให้ใช้ $\dfrac{fl}{V}$ เหมือนที่ทำในข้อ 8</p>
-</section>
+  <p class="note">สไลด์เขียน Strouhal เป็น $\dfrac{l\omega}{V}$ โดยใช้ $\omega$ แทนความถี่ ถ้าโจทย์ให้เป็น Hz ให้ใช้ $\dfrac{fl}{V}$ เหมือนข้อ 8</p>
 
-<section>
-  <h2>Model กับ Prototype: เงื่อนไขและสัดส่วน</h2>
-  <ul class="tips">
-    <li><span class="lead">ต้องมี 2 อย่าง</span> คือ Geometric Similarity (ทุกความยาวมีสัดส่วนเท่ากัน มุมเท่ากัน ความขรุขระก็ต้องย่อตาม) และกลุ่มไม่มีมิติที่เกี่ยวข้องต้องเท่ากัน ($\Pi_{m} = \Pi_{p}$)</li>
+  <ul class="tips" style="margin-top:1rem">
+    <li><span class="lead">ต้องมี 2 อย่าง</span> คือ Geometric Similarity (ทุกความยาวมีสัดส่วนเท่ากัน มุมเท่ากัน ความขรุขระก็ย่อตาม) และกลุ่มไม่มีมิติที่เกี่ยวข้องต้องเท่ากัน ($\Pi_m = \Pi_p$)</li>
     <li><span class="lead">ไหลปิด (ท่อ ปั๊ม วัตถุจมน้ำ)</span> ทำให้ $Re$ เท่ากัน</li>
-    <li><span class="lead">ผิวน้ำเปิด (แม่น้ำ)</span> ทำให้ $Fr$ เท่ากัน ไม่ต้องคิดแรงหนืด</li>
+    <li><span class="lead">ผิวน้ำเปิด (แม่น้ำ)</span> ทำให้ $Fr$ เท่ากัน</li>
     <li><span class="lead">อากาศความเร็วสูง</span> ทำให้ $M$ เท่ากัน</li>
   </ul>
-
-  <p style="margin-top:1.2rem"><b>สัดส่วนของสไลด์ (ใช้ $\alpha = L_m/L_p$ คือ Dimensionless Ratio)</b></p>
+  <p style="margin-top:1rem"><b>สัดส่วนของสไลด์ ($\alpha = L_m/L_p$)</b></p>
   $$\frac{L_m}{L_p} = \alpha,\qquad \frac{V_m}{V_p} = \sqrt{\alpha}\ \ (Fr),\qquad \frac{T_m}{T_p} = \sqrt{\alpha},\qquad \frac{\nu_m}{\nu_p} = \alpha^{3/2}$$
   <p class="note">สัดส่วน $1:10$ คือ $\alpha = 0.1$ และ $\dfrac{L_p}{L_m} = 10$ ให้เช็กว่าข้อสอบให้สัดส่วนเป็น Model : Prototype</p>
 </section>
 
 <section>
-  <h2>ผลลัพธ์ที่ต้องจำ: ของไหลเดียวกัน</h2>
-  <p class="muted">เมื่อ $\rho_m = \rho_p$ และ $\mu_m = \mu_p$ ให้ $n = \dfrac{D_p}{D_m}$ (Prototype ใหญ่กว่า Model กี่เท่า) ตัว $\rho$ และ $\mu$ ตัดกันทิ้ง</p>
-  <div class="tscroll">
-  <table class="dims">
-    <thead><tr><th>ตัวแปร</th><th>$\Pi$ ที่ใช้</th><th>ค่าของ Model</th></tr></thead>
-    <tbody>
-      <tr><td class="q">$Q$ อัตราการไหล</td><td>$\dfrac{\rho Q}{D\mu}$</td><td>$Q_m = Q_p/n$</td></tr>
-      <tr><td class="q">$V$ ความเร็ว</td><td>$\dfrac{\rho V D}{\mu}$</td><td>$V_m = n\,V_p$</td></tr>
-      <tr><td class="q">$\Delta P$ ความดันเพิ่ม</td><td>$\dfrac{D^{2}\rho\,\Delta P}{\mu^{2}}$</td><td>$\Delta P_m = n^{2}\,\Delta P_p$</td></tr>
-      <tr><td class="q">$dP/dx$</td><td>$\dfrac{D^{3}\rho\,(dP/dx)}{\mu^{2}}$</td><td>$(dP/dx)_m = n^{3}\,(dP/dx)_p$</td></tr>
-      <tr><td class="q">$\omega$ ความเร็วเชิงมุม</td><td>$\dfrac{\rho D^{2}\omega}{\mu}$</td><td>$\omega_m = n^{2}\,\omega_p$</td></tr>
-      <tr><td class="q">$T$ แรงบิด</td><td>$\dfrac{\rho T}{D\mu^{2}}$</td><td>$T_m = T_p/n$</td></tr>
-      <tr><td class="q">$F$ แรง</td><td>$\dfrac{\rho F}{\mu^{2}}$</td><td>$F_m = F_p$ (เท่ากัน)</td></tr>
-      <tr><td class="q">$\dot W$ กำลัง</td><td>$\dfrac{D\rho^{2}\dot W}{\mu^{3}}$</td><td>$\dot W_m = n\,\dot W_p$</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">ตารางนี้ใช้ได้เมื่อของไหลเดียวกัน และตัวแปรตามที่ตั้ง (เช่น $\Delta P = f(Q, D, \rho, \mu)$) ถ้าของไหลต่างกัน ต้องแทน $\rho$ และ $\mu$ ทั้งสองฝั่ง ดูด้านล่าง</p>
+  <p class="lv l3">ระดับ 3 · เผื่อออก</p>
+  <h2>ข้อที่น่าจะออกเพิ่ม เรียงตามลำดับที่ผมคิดว่าน่าออก</h2>
+  <p class="muted">เลือกจากไฟล์โจทย์ตัวอย่างบทที่ 4 ของอาจารย์ ข้อ 7 และ 8 อยู่ในแท็บของมันเองแล้ว ลำดับนี้เป็นความเห็นของผม ไม่ใช่ข้อมูลจากอาจารย์ ข้อ 5, 6 และ 9 ใช้วิธีจับคู่แบบจำลองเหมือนข้อ 7 จึงมาก่อนข้อ 1–4 ที่หา $\Pi$ อย่างเดียว</p>
 
-  <p style="margin-top:1.2rem"><b>ของไหลต่างกัน (ข้อ 8 และ Mock Quiz ข้อ 5)</b></p>
-  $$V_m = V_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_p}{D_m}\right)\left(\frac{\mu_m}{\mu_p}\right)\qquad
-  Q_m = Q_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_m}{D_p}\right)\left(\frac{\mu_m}{\mu_p}\right)$$
-  $$\Delta P_m = \Delta P_p\left(\frac{D_p}{D_m}\right)^{2}\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right)^{2}$$
-</section>
+  <p><b>1) ข้อ 5: ท่อยาว 200 m, $D_p = 0.5\ \text{m}$, $V_p = 0.2\ \text{m/s}$, สัดส่วน 1:10 หา $V_m$</b></p>
+  <p class="muted">ไหลในท่อปิด ใช้ $Re$ เท่ากัน ของไหลเดียวกัน</p>
+  $$\frac{V_mD_m}{\nu} = \frac{V_pD_p}{\nu}\ \Rightarrow\ V_m = V_p\left(\frac{D_p}{D_m}\right) = 0.2\times10 = 2\ \text{m/s}$$
 
-<section>
-  <h2>ค่าสมบัติของของไหลจากไฟล์โจทย์</h2>
-  <div class="tscroll">
-  <table class="dims">
-    <thead><tr><th>ของไหล</th><th>$\rho\ (\text{kg/m}^3)$</th><th>$\mu\ (\text{Pa}\cdot\text{s})$</th><th>ใช้ในข้อ</th></tr></thead>
-    <tbody>
-      <tr><td class="q">อากาศ</td><td>$1.23$</td><td>$1.79\times10^{-5}$</td><td>ข้อ 8</td></tr>
-      <tr><td class="q">น้ำ ($20^\circ\text{C}$)</td><td>$998$</td><td>$1.00\times10^{-3}$</td><td>ข้อ 8</td></tr>
-      <tr><td class="q">น้ำจืด</td><td>$1000$</td><td>$0.001$</td><td>ข้อ 9</td></tr>
-      <tr><td class="q">น้ำทะเล</td><td>$1036$</td><td>$0.0012$</td><td>ข้อ 9</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="note">ถ้าโจทย์ไม่ให้ค่ามา ข้อ 7 ไม่ต้องใช้ เพราะ $\rho$ และ $\mu$ ตัดกัน</p>
-</section>
+  <p style="margin-top:1.4rem"><b>2) ข้อ 6: แม่น้ำสัดส่วน 1:80, $V_m = 18\ \text{m/s}$ หา $V_p$</b></p>
+  <p class="muted">ผิวน้ำเปิด ใช้ $Fr$ เท่ากัน</p>
+  $$\frac{V_p^{2}}{gL_p} = \frac{V_m^{2}}{gL_m}\ \Rightarrow\ V_p = V_m\sqrt{\frac{L_p}{L_m}} = 18\sqrt{80} = 161\ \text{m/s}$$
 
-<section>
-  <h2>ข้อที่น่าจะออกเพิ่ม (จากไฟล์โจทย์ตัวอย่างบทที่ 4)</h2>
-  <p class="muted">ผมเลือกข้อ 1–6 และ 9 ที่อยู่ในไฟล์โจทย์ของอาจารย์ ข้อ 7 และ 8 อยู่ในแท็บของมันเองแล้ว ผลของข้อ 1–4 ขึ้นกับตัวแปรซ้ำที่เลือก ถ้าเลือกต่างกัน หน้าตา $\Pi$ จะต่างแต่ถูกเหมือนกัน</p>
+  <p style="margin-top:1.4rem"><b>3) ข้อ 9: เรือดำน้ำ 8 m/s ในน้ำทะเล, แบบจำลอง 1:100 ในน้ำจืด, $F_m = 200\ \text{N}$ หา $V_m$ และ $F_p$</b></p>
+  <p class="muted">โจทย์ให้ $\dfrac{F}{\rho V^{2}D^{2}} = f\!\left(\dfrac{\rho V D}{\mu}\right)$ ดังนั้นต้องให้ $Re$ เท่ากัน แล้วตัวซ้ายก็เท่ากัน</p>
+  $$V_m = V_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_p}{D_m}\right)\left(\frac{\mu_m}{\mu_p}\right) = 8\times\frac{1036}{1000}\times100\times\frac{0.001}{0.0012} = 690.7\ \text{m/s}$$
+  $$F_p = F_m\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{V_p}{V_m}\right)^{2}\left(\frac{D_p}{D_m}\right)^{2} = 200\times1.036\times\left(\frac{8}{690.7}\right)^{2}\times100^{2} = 278\ \text{N}$$
+  <p class="note">เช็กอีกทาง: เมื่อ $Re$ เท่ากัน $F \propto \dfrac{\mu^{2}}{\rho}$ จึงได้ $F_p = 200\times\dfrac{0.0012^{2}/1036}{0.001^{2}/1000} = 278\ \text{N}$ เท่ากัน ความเร็ว $690\ \text{m/s}$ สูงจนเป็นไปไม่ได้จริง แต่เป็นสิ่งที่โจทย์ต้องการ</p>
 
-  <p><b>ข้อ 1–4: หา $\Pi$ อย่างเดียว</b></p>
+  <p style="margin-top:1.4rem"><b>4) ข้อ 1–4: หา $\Pi$ อย่างเดียว</b></p>
+  <p class="muted">ผลขึ้นกับตัวแปรซ้ำที่เลือก ถ้าเลือกต่างกัน หน้าตา $\Pi$ จะต่างแต่ถูกเหมือนกัน</p>
   <div class="tscroll">
   <table class="dims">
     <thead><tr><th>ข้อ</th><th>ฟังก์ชัน</th><th>$k$, $r$, จำนวน $\Pi$</th><th>ตัวแปรซ้ำ</th><th>$\Pi$ ที่ได้</th></tr></thead>
@@ -352,33 +431,7 @@
     </tbody>
   </table>
   </div>
-  <p class="note">ข้อ 3 และ 4 ตัวอย่างนี้ใส่ $\gamma$ ไว้เป็นตัวแปรหนึ่งตามโจทย์ ($\gamma$ มีมิติเดียวกับ $dP/dx$ คือ $ML^{-2}T^{-2}$) ตรวจว่าทุก $\Pi$ ไม่มีมิติก่อนส่ง</p>
-
-  <p style="margin-top:1.4rem"><b>ข้อ 5: ท่อยาว 200 m, $D_p = 0.5\ \text{m}$, $V_p = 0.2\ \text{m/s}$, สัดส่วน 1:10 หา $V_m$</b></p>
-  <p class="muted">ไหลในท่อปิด ใช้ $Re$ เท่ากัน ของไหลเดียวกัน</p>
-  $$\frac{V_mD_m}{\nu} = \frac{V_pD_p}{\nu}\ \Rightarrow\ V_m = V_p\left(\frac{D_p}{D_m}\right) = 0.2\times10 = 2\ \text{m/s}$$
-
-  <p style="margin-top:1.4rem"><b>ข้อ 6: แม่น้ำสัดส่วน 1:80, $V_m = 18\ \text{m/s}$ หา $V_p$</b></p>
-  <p class="muted">ผิวน้ำเปิด ใช้ $Fr$ เท่ากัน</p>
-  $$\frac{V_p^{2}}{gL_p} = \frac{V_m^{2}}{gL_m}\ \Rightarrow\ V_p = V_m\sqrt{\frac{L_p}{L_m}} = 18\sqrt{80} = 161\ \text{m/s}$$
-
-  <p style="margin-top:1.4rem"><b>ข้อ 9: เรือดำน้ำ 8 m/s ในน้ำทะเล, แบบจำลอง 1:100 ในน้ำจืด, $F_m = 200\ \text{N}$ หา $V_m$ และ $F_p$</b></p>
-  <p class="muted">โจทย์ให้ $\dfrac{F}{\rho V^{2}D^{2}} = f\!\left(\dfrac{\rho V D}{\mu}\right)$ ดังนั้นต้องให้ $Re$ เท่ากัน แล้วตัวซ้ายก็เท่ากัน</p>
-  $$V_m = V_p\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{D_p}{D_m}\right)\left(\frac{\mu_m}{\mu_p}\right) = 8\times\frac{1036}{1000}\times100\times\frac{0.001}{0.0012} = 690.7\ \text{m/s}$$
-  $$F_p = F_m\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{V_p}{V_m}\right)^{2}\left(\frac{D_p}{D_m}\right)^{2} = 200\times1.036\times\left(\frac{8}{690.7}\right)^{2}\times100^{2} = 278\ \text{N}$$
-  <p class="note">เช็กอีกทาง: เมื่อ $Re$ เท่ากัน $F \propto \dfrac{\mu^{2}}{\rho}$ จึงได้ $F_p = 200\times\dfrac{0.0012^{2}/1036}{0.001^{2}/1000} = 278\ \text{N}$ เท่ากัน ความเร็ว $690\ \text{m/s}$ สูงจนเป็นไปไม่ได้จริง แต่เป็นสิ่งที่โจทย์ต้องการ</p>
-</section>
-
-<section>
-  <h2>ขั้นตอนและข้อควรระวัง</h2>
-  <ol class="steps">
-    <li><h3>เขียนฟังก์ชัน นับ $k$, $r$</h3><p>จำนวน $\Pi = k - r$ ตัวที่ถาม ไว้หน้าวงเล็บ ตัวที่เหลือเป็นเหตุ ถ้าโจทย์พูดถึงของไหลใส่ $\rho$ และ $\mu$</p></li>
-    <li><h3>เขียนมิติ $M, L, T$ ของทุกตัวแปร</h3><p>เขียนที่มาของ $P$ และ $\mu$ ในข้อสอบ</p></li>
-    <li><h3>เลือกตัวแปรซ้ำ $r$ ตัว</h3><p>รวมกันต้องมีครบ $M, L, T$ ไม่เป็นตัวแปรไม่มีมิติ และไม่มีสองตัวที่มิติเหมือนกัน (ข้อ 7: $D, \rho, \mu$)</p></li>
-    <li><h3>แก้ $\Pi$ ทีละตัว</h3><p>ตั้งให้เลขชี้กำลังของ $M, L, T$ เป็น $0$ แก้จาก $T$ ก่อน แล้ว $M$ และ $L$ ตรวจว่าไม่เหลือมิติ</p></li>
-    <li><h3>เขียนตาราง Model และ Prototype</h3><p>แปลงหน่วยเป็น SI และดูว่าของไหลเดียวกันหรือไม่</p></li>
-    <li><h3>ให้ $\Pi$ เท่ากัน แล้วแก้หาค่า</h3><p>ย้ายข้างจากสมการ อย่าจำทิศของอัตราส่วน ใส่หน่วยในคำตอบ และหาตัวที่ต้องใช้ผลของตัวอื่นไว้ทีหลัง (ข้อ 8: หา $V_m$ ก่อน $f_p$)</p></li>
-  </ol>
+  <p class="note">ข้อ 3 และ 4 ใส่ $\gamma$ ไว้เป็นตัวแปรหนึ่งตามโจทย์ ($\gamma$ มีมิติเดียวกับ $dP/dx$ คือ $ML^{-2}T^{-2}$) ตรวจว่าทุก $\Pi$ ไม่มีมิติก่อนส่ง</p>
 </section>
 <div class="chips-slot"></div><div class="pager"><a class="next" href="#basics"><small>ถัดไป →</small>พื้นฐาน: km/hr เป็น M L T</a></div></article>
 <article class="panel" id="basics">
